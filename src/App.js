@@ -1,13 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import exifr from 'exifr';
 import './App.css';
 import { createPortal } from 'react-dom';
-import ImageModal from './ImageModal';
-import Map from './Map';
+import ImageModal from './components/ImageModal';
+import Map from './components/Map';
+import { AnimatePresence } from 'framer-motion';
 
 const App = () => {
+  const elPortal = useRef();
   const [images, setImages] = useState();
   const [selectedImage, setSelectedImage] = useState(null);
+  const [modal, setModal] = useState(null);
   const [sizes, setSizes] = useState({
     height: window.innerHeight,
     width: window.innerWidth,
@@ -33,6 +36,10 @@ const App = () => {
   };
 
   useEffect(() => {
+    const onCloseImageModal = () => {
+      setModal(null);
+    };
+
     const loadImage = async (url) => {
       return new Promise((resolve, reject) => {
         const img = new Image();
@@ -44,7 +51,9 @@ const App = () => {
             longitude,
             url,
           };
-          image.onClick = () => setSelectedImage(image);
+          image.onClick = () => {
+            setModal(<ImageModal data={image} onClose={onCloseImageModal} />);
+          };
 
           resolve(image);
         };
@@ -78,26 +87,16 @@ const App = () => {
     return 'loading...';
   }
 
-  const onCloseImageModal = () => {
-    setSelectedImage(null);
-  };
-
   console.log(selectedImage);
 
   return (
-    <>
-      <div className="app">
+    <AnimatePresence>
+      <div className={'app'} key={'app'}>
         <Map height={sizes.height} markers={images} width={sizes.width} />
       </div>
-      {createPortal(
-        <ImageModal
-          data={selectedImage}
-          isVisible={selectedImage !== null}
-          onClose={onCloseImageModal}
-        />,
-        document.querySelector('#portal')
-      )}
-    </>
+      <div key={'portal'} ref={elPortal} />
+      {modal && createPortal(modal, elPortal.current)}
+    </AnimatePresence>
   );
 };
 
