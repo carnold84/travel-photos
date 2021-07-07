@@ -1,10 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 import './Map.css';
 
 const MapInner = ({ markers }) => {
   const map = useMap();
-  console.log(map);
 
   useEffect(() => {
     if (map) {
@@ -53,15 +52,37 @@ const MapInner = ({ markers }) => {
   );
 };
 
-const Map = ({ height, markers, width }) => {
+const Map = ({ markers = [] }) => {
+  const [sizes, setSizes] = useState({
+    height: window.innerHeight,
+    width: window.innerWidth,
+  });
+
+  const onResize = () => {
+    setSizes({
+      height: window.innerHeight,
+      width: window.innerWidth,
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', onResize);
+
+    return () => {
+      window.removeEventListener('resize', onResize);
+    };
+  }, []);
+
   return (
-    <MapContainer
-      center={[0, 0]}
-      scrollWheelZoom={true}
-      style={{ height, width }}
-      zoom={1}>
-      <MapInner markers={markers} />
-    </MapContainer>
+    <div style={sizes}>
+      <MapContainer
+        center={[0, 0]}
+        scrollWheelZoom={true}
+        style={{ height: '100%', width: '100%' }}
+        zoom={1}>
+        <MapInner markers={markers} />
+      </MapContainer>
+    </div>
   );
 };
 

@@ -1,41 +1,15 @@
-import { useEffect, useRef, useState } from 'react';
-import exifr from 'exifr';
+import { useState } from 'react';
 import './App.css';
-import { createPortal } from 'react-dom';
-import ImageModal from './components/ImageModal';
-import Map from './components/Map';
+import { Router } from '@reach/router';
 import { AnimatePresence } from 'framer-motion';
 
+import List from './views/List';
+import Photo from './views/Photo';
+import Trip from './views/Trip';
+import Upload from './views/Upload';
+
 const App = () => {
-  const elPortal = useRef();
-  const [images, setImages] = useState();
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [modal, setModal] = useState(null);
-  const [sizes, setSizes] = useState({
-    height: window.innerHeight,
-    width: window.innerWidth,
-  });
-  const urls = [
-    '/images/image1.jpg',
-    '/images/image2.jpg',
-    '/images/image3.jpg',
-    '/images/image4.jpg',
-    '/images/image5.jpg',
-    '/images/image6.jpg',
-    '/images/image7.jpg',
-    '/images/image8.jpg',
-    '/images/image9.jpg',
-    '/images/image10.jpg',
-  ];
-
-  const onResize = () => {
-    setSizes({
-      height: window.innerHeight,
-      width: window.innerWidth,
-    });
-  };
-
-  useEffect(() => {
+  /* useEffect(() => {
     const onCloseImageModal = () => {
       setModal(null);
     };
@@ -81,21 +55,16 @@ const App = () => {
     return () => {
       window.removeEventListener('resize', onResize);
     };
-  }, []);
-
-  if (!images) {
-    return 'loading...';
-  }
-
-  console.log(selectedImage);
+  }, []); */
 
   return (
     <AnimatePresence>
-      <div className={'app'} key={'app'}>
-        <Map height={sizes.height} markers={images} width={sizes.width} />
-      </div>
-      <div key={'portal'} ref={elPortal} />
-      {modal && createPortal(modal, elPortal.current)}
+      <Router>
+        <List path={'/'} />
+        <Trip path={'/trip/:id'} />
+        <Photo path={'/photo/:id'} />
+        <Upload path={'/upload-images'} />
+      </Router>
     </AnimatePresence>
   );
 };

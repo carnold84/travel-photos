@@ -1,0 +1,9 @@
+.upload-modal {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+}
