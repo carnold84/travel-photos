@@ -1,7 +1,7 @@
 import { createPhotos, loadPhoto } from '../../../api';
 import './SelectPhotos.css';
 
-const SelectPhotos = ({ onBack, onCancel, photos, setPhotos }) => {
+const SelectPhotos = ({ onCancel, onNext, photos, setPhotos }) => {
   const loadPhotos = async (urls) => {
     let nextPhotos = [...photos, ...createPhotos(urls)];
     setPhotos(nextPhotos);
@@ -69,7 +69,7 @@ const SelectPhotos = ({ onBack, onCancel, photos, setPhotos }) => {
           })}
       </div>
       <button onClick={onCancel}>Cancel</button>
-      <button onClick={onBack}>Next</button>
+      <button onClick={onNext}>Next</button>
     </div>
   );
 };

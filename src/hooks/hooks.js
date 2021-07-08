@@ -35,7 +35,7 @@ export const useAddPhotos = () => {
   const { dispatch } = useStore();
 
   const addPhotos = (photos, tripId) => {
-    dispatch(ACTIONS.ADD_PHOTOS, { photos, tripId });
+    dispatch({ payload: { photos, id: tripId }, type: ACTIONS.ADD_PHOTOS });
   };
 
   return addPhotos;
