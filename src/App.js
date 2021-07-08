@@ -7,6 +7,7 @@ import List from './views/List';
 import Photo from './views/Photo';
 import Trip from './views/Trip';
 import Upload from './views/Upload';
+import StoreProvider from './store';
 
 const App = () => {
   /* useEffect(() => {
@@ -58,14 +59,16 @@ const App = () => {
   }, []); */
 
   return (
-    <AnimatePresence>
-      <Router>
-        <List path={'/'} />
-        <Trip path={'/trip/:id'} />
-        <Photo path={'/photo/:id'} />
-        <Upload path={'/upload-images'} />
-      </Router>
-    </AnimatePresence>
+    <StoreProvider>
+      <AnimatePresence>
+        <Router>
+          <List path={'/'} />
+          <Trip path={'/trip/:id'} />
+          <Photo path={'/photo/:id'} />
+          <Upload path={'/upload-images'} />
+        </Router>
+      </AnimatePresence>
+    </StoreProvider>
   );
 };
 

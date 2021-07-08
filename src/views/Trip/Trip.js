@@ -16,8 +16,8 @@ const Trip = () => {
           town: 'Alberquque',
         },
         id: '1',
-        latitude: 0,
-        longitude: 0,
+        latitude: [0, 0],
+        longitude: [0, 0],
         url: '/images/image1.jpg',
       },
       {
