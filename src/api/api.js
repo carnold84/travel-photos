@@ -11,7 +11,7 @@ const getLocation = async ({ latitude, longitude }) => {
   });
 };
 
-export const loadImage = async (url) => {
+export const loadPhoto = async (url) => {
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.onload = async () => {
@@ -34,7 +34,7 @@ export const loadImage = async (url) => {
   });
 };
 
-export const createImages = (urls) => {
+export const createPhotos = (urls) => {
   return urls.map((url) => {
     const image = {
       id: uuidV4(),

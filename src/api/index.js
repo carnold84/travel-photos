@@ -1,3 +1,1 @@
-import api from 'api';
-
-export default api;
+export { createPhotos, loadPhoto } from './api';

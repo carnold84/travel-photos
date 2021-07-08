@@ -5,6 +5,8 @@ import './List.css';
 const List = () => {
   const trips = useTrips();
 
+  console.log(trips);
+
   return (
     <>
       <Link to={'/upload-images'}>Upload</Link>

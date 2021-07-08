@@ -25,7 +25,7 @@ export const useCreateTrip = () => {
   const { dispatch } = useStore();
 
   const createTrip = (trip) => {
-    dispatch(ACTIONS.CREATE_TRIP, trip);
+    dispatch({ payload: trip, type: ACTIONS.CREATE_TRIP });
   };
 
   return createTrip;
