@@ -1,65 +1,52 @@
 import { useParams } from '@reach/router';
+import { useMemo, useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
+import ImageModal from '../../components/ImageModal';
 import Map from '../../components/Map';
+import { useTrip } from '../../hooks';
 import './Trip.css';
 
 const Trip = () => {
-  const { id } = useParams();
-  const trip = {
-    id: '3',
-    name: 'Trip 3',
-    photos: [
-      {
-        address: {
-          city: 'Phoenix',
-          country: 'US',
-          suburb: 'Test',
-          town: 'Alberquque',
-        },
-        id: '1',
-        latitude: [0, 0],
-        longitude: [0, 0],
-        url: '/images/image1.jpg',
-      },
-      {
-        address: {
-          city: 'Phoenix',
-          country: 'US',
-          suburb: 'Test',
-          town: 'Alberquque',
-        },
-        id: '2',
-        latitude: 0,
-        longitude: 0,
-        url: '/images/image2.jpg',
-      },
-      {
-        address: {
-          city: 'Phoenix',
-          country: 'US',
-          suburb: 'Test',
-          town: 'Alberquque',
-        },
-        id: '3',
-        latitude: 0,
-        longitude: 0,
-        url: '/images/image3.jpg',
-      },
-    ],
+  const params = useParams();
+  const tripId = params?.tripId;
+  const trip = useTrip(tripId);
+  const [selectedPhotoId, setSelectedPhotoId] = useState();
+
+  const onClose = () => {
+    setSelectedPhotoId(null);
   };
-  const urls = [
-    '/images/image1.jpg',
-    '/images/image2.jpg',
-    '/images/image3.jpg',
-    '/images/image4.jpg',
-    '/images/image5.jpg',
-    '/images/image6.jpg',
-    '/images/image7.jpg',
-    '/images/image8.jpg',
-    '/images/image9.jpg',
-    '/images/image10.jpg',
-  ];
-  console.log(id);
-  return <Map markers={trip.photos} />;
+
+  const markers = useMemo(() => {
+    return trip?.photos.map(({ id, latitude, longitude }) => {
+      return {
+        id,
+        latitude,
+        longitude,
+        onClick: () => {
+          setSelectedPhotoId(id);
+        },
+      };
+    });
+  }, [trip]);
+
+  if (!trip) {
+    return "Trip doesn't exist.";
+  }
+
+  return (
+    <>
+      <Map markers={markers} />
+      <AnimatePresence>
+        {selectedPhotoId && (
+          <ImageModal
+            key={'image'}
+            onClose={onClose}
+            photoId={selectedPhotoId}
+          />
+        )}
+      </AnimatePresence>
+    </>
+  );
 };
 
 export default Trip;

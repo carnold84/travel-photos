@@ -1,14 +1,16 @@
-.image-modal {
+.modal {
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
   height: 100%;
+  left: 0;
   position: absolute;
+  top: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 10000;
 }
 
-.image-modal .header {
+.modal .header {
   align-items: center;
   display: flex;
   flex-shrink: 0;
@@ -19,7 +21,7 @@
   width: 100%;
 }
 
-.image-modal .close-btn {
+.modal .close-btn {
   align-items: center;
   background-color: rgba(255, 255, 255, 0.35);
   border: none;
@@ -34,18 +36,18 @@
   width: 34px;
 }
 
-.image-modal .close-btn:hover {
+.modal .close-btn:hover {
   background-color: rgba(255, 255, 255, 0.6);
   fill: rgba(0, 0, 0, 1);
 }
 
-.image-modal .close-btn svg {
+.modal .close-btn svg {
   fill: inherit;
   height: 16px;
   width: 16px;
 }
 
-.image-modal .content {
+.modal .content {
   align-items: center;
   display: flex;
   flex-grow: 1;
@@ -54,7 +56,7 @@
   overflow: hidden;
 }
 
-.image-modal img {
+.modal img {
   height: 100%;
   object-fit: contain;
   padding: 30px;

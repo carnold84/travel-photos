@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 import './Modal.css';
 
-const Modal = ({ children, onClose, title }) => {
+const Modal = ({ children, id, onClose, title }) => {
   useEffect(() => {
     const onKeyDown = (evt) => {
       if (evt.keyCode === 27) {
@@ -19,10 +19,11 @@ const Modal = ({ children, onClose, title }) => {
 
   return (
     <motion.div
-      className="image-modal"
-      initial={{ y: '100%' }}
       animate={{ y: 0, transition: { ease: 'easeOut', duration: 0.5 } }}
-      exit={{ y: '100%', transition: { ease: 'easeIn', duration: 0.5 } }}>
+      className={'modal'}
+      exit={{ y: '100%', transition: { ease: 'easeIn', duration: 0.5 } }}
+      initial={{ y: '100%' }}
+      key={id}>
       <header className={'header'}>
         {<span>{title}</span>}
         <button className={'close-btn'} onClick={onClose}>

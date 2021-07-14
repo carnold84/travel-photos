@@ -34,8 +34,10 @@ const Upload = () => {
       addPhotos(photos, tripId);
     } else {
       createTrip({
-        name: tripName,
         photos,
+        trip: {
+          name: tripName,
+        },
       });
     }
 

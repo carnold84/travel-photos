@@ -15,16 +15,21 @@ export const loadPhoto = async (url) => {
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.onload = async () => {
-      let { latitude, longitude } = (await exifr.gps(url)) || {};
+      console.log(await exifr.parse(url));
+      let { CreateDate, ImageHeight, ImageWidth, latitude, longitude } =
+        (await exifr.parse(url)) || {};
       let data;
 
       if (latitude && longitude) {
         const location = await getLocation({ latitude, longitude });
         console.log(location);
         data = {
+          created: CreateDate,
           latitude,
           location,
           longitude,
+          origHeight: ImageHeight,
+          origWidth: ImageWidth,
         };
       }
 
@@ -44,4 +49,20 @@ export const createPhotos = (urls) => {
 
     return image;
   });
+};
+
+export const createTrip = ({ photos, trip }) => {
+  const { allPhotosIds, photosById } = createPhotos(photos);
+
+  const nextTrip = {
+    ...trip,
+    id: uuidV4(),
+    photos: allPhotosIds.map((id) => {
+      return photosById[id];
+    }),
+  };
+
+  console.log(nextTrip);
+
+  return nextTrip;
 };

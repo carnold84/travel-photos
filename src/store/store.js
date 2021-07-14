@@ -7,52 +7,106 @@ export const ACTIONS = {
 };
 
 const initialState = {
-  trips: [],
+  photos: {
+    allIds: [],
+    byId: [],
+  },
+  trips: {
+    allIds: [],
+    byId: [],
+  },
+};
+
+const createPhotos = (photos) => {
+  const photosById = {};
+  const allPhotosIds = photos.map((photo) => {
+    const nextPhoto = {
+      ...photo,
+      id: v4(),
+    };
+
+    photosById[nextPhoto.id] = nextPhoto;
+
+    return nextPhoto.id;
+  });
+
+  console.log(allPhotosIds);
+
+  return {
+    allPhotosIds,
+    photosById,
+  };
+};
+
+const createTrip = (state, { photos, trip }) => {
+  const { allPhotosIds, photosById } = createPhotos(photos);
+  console.log(allPhotosIds, photosById);
+  const nextTrip = {
+    ...trip,
+    id: v4(),
+    photos: allPhotosIds,
+  };
+
+  console.log(nextTrip);
+
+  return {
+    ...state,
+    photos: {
+      allIds: [...state.photos.allIds, ...allPhotosIds],
+      byId: {
+        ...state.photos.byId,
+        ...photosById,
+      },
+    },
+    trips: {
+      allIds: [...state.trips.allIds, nextTrip.id],
+      byId: {
+        ...state.trips.byId,
+        [nextTrip.id]: nextTrip,
+      },
+    },
+  };
 };
 
 const reducer = (state, action) => {
+  let nextTrip;
+
   switch (action.type) {
     case ACTIONS.CREATE_TRIP:
-      return {
-        ...state,
-        trips: [
-          ...state.trips,
-          {
-            ...action.payload,
-            photos: action.payload.photos.map((photo) => {
-              return {
-                ...photo,
-                id: v4(),
-              };
-            }),
-            id: v4(),
-          },
-        ],
-      };
+      return createTrip(state, action.payload);
 
     case ACTIONS.ADD_PHOTOS:
-      const nextTrips = state.trips.map((trip) => {
-        if (trip.id === action.payload.id) {
-          return {
-            ...trip,
-            photos: [
-              ...trip.photos,
-              ...action.payload.photos.map((photo) => {
-                return {
-                  ...photo,
-                  id: v4(),
-                };
-              }),
-            ],
-          };
-        }
-        return trip;
-      });
+      nextTrip = state.trips.byId[action.payload.id];
 
-      return {
-        ...state,
-        trips: nextTrips,
-      };
+      if (nextTrip) {
+        const { allPhotosIds, photosById } = createPhotos(
+          action.payload.photos
+        );
+        nextTrip = {
+          ...nextTrip,
+          photos: [...nextTrip.photos, ...allPhotosIds],
+        };
+
+        return {
+          ...state,
+          photos: {
+            allIds: [...state.photos.allIds, ...allPhotosIds],
+            byId: {
+              ...state.photos.byId,
+              ...photosById,
+            },
+          },
+          trips: {
+            ...state.trips,
+            byId: {
+              ...state.trips.byId,
+              [nextTrip.id]: nextTrip,
+            },
+          },
+        };
+      }
+
+      return state;
 
     default:
       throw new Error();
