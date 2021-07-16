@@ -1,6 +1,85 @@
 import exifr from 'exifr';
 import { v4 as uuidV4 } from 'uuid';
 
+const KEY = 'travel_photos';
+
+const getData = async () => {
+  let value = await localStorage.getItem(KEY);
+  value = value ? JSON.parse(value) : { collections: [] };
+
+  return value;
+};
+
+const updateData = async (data) => {
+  await localStorage.setItem(KEY, JSON.stringify(data));
+};
+
+export const fetchInitialData = async () => {
+  const data = await getData();
+
+  return {
+    data,
+    success: true,
+  };
+};
+
+export const createCollection = async (collection) => {
+  const nextCollection = {
+    ...collection,
+    id: uuidV4(),
+  };
+  console.log(nextCollection);
+
+  const data = await getData();
+  updateData({
+    ...data,
+    collections: [...data.collections, nextCollection],
+  });
+
+  return {
+    data: nextCollection,
+    success: true,
+  };
+};
+
+export const updateCollection = async ({ collection, photos }) => {
+  const nextCollection = {
+    ...collection,
+    photos: [...collection.photos, ...photos],
+  };
+
+  const data = await getData();
+  updateData({
+    ...data,
+    collections: data.collections.map((collection) => {
+      if (collection.id === nextCollection.id) {
+        return nextCollection;
+      }
+      return collection;
+    }),
+  });
+
+  return {
+    data: nextCollection,
+    success: true,
+  };
+};
+
+export const createPhotos = async (photoUrls) => {
+  const photos = [];
+
+  for (const url of photoUrls) {
+    const photo = await createPhoto(url);
+
+    photos.push(photo.data);
+  }
+
+  return {
+    data: photos,
+    success: true,
+  };
+};
+
 const getLocation = async ({ latitude, longitude }) => {
   return new Promise(async (resolve, reject) => {
     const response = await fetch(
@@ -11,19 +90,22 @@ const getLocation = async ({ latitude, longitude }) => {
   });
 };
 
-export const loadPhoto = async (url) => {
+const createPhoto = async (url) => {
   return new Promise((resolve, reject) => {
+    let photo = {
+      id: uuidV4(),
+      url,
+    };
+
     const img = new Image();
     img.onload = async () => {
-      console.log(await exifr.parse(url));
       let { CreateDate, ImageHeight, ImageWidth, latitude, longitude } =
         (await exifr.parse(url)) || {};
-      let data;
 
       if (latitude && longitude) {
         const location = await getLocation({ latitude, longitude });
-        console.log(location);
-        data = {
+        photo = {
+          ...photo,
           created: CreateDate,
           latitude,
           location,
@@ -33,36 +115,11 @@ export const loadPhoto = async (url) => {
         };
       }
 
-      resolve(data);
+      resolve({
+        data: photo,
+        success: true,
+      });
     };
     img.src = url;
   });
-};
-
-export const createPhotos = (urls) => {
-  return urls.map((url) => {
-    const image = {
-      id: uuidV4(),
-      isLoaded: false,
-      url,
-    };
-
-    return image;
-  });
-};
-
-export const createTrip = ({ photos, trip }) => {
-  const { allPhotosIds, photosById } = createPhotos(photos);
-
-  const nextTrip = {
-    ...trip,
-    id: uuidV4(),
-    photos: allPhotosIds.map((id) => {
-      return photosById[id];
-    }),
-  };
-
-  console.log(nextTrip);
-
-  return nextTrip;
 };

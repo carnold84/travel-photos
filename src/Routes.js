@@ -1,12 +1,22 @@
-import { Location, navigate, Router, useParams } from '@reach/router';
+import { Router } from '@reach/router';
 import { AnimatePresence } from 'framer-motion';
 
-import ImageModal from './components/ImageModal';
+import { useFetchInitialData, useStore } from './hooks';
 import List from './views/List';
-import Trip from './views/Trip';
+import Collection from './views/Collection';
 import Upload from './views/Upload';
+import { useEffect } from 'react';
 
 const Routes = ({ location }) => {
+  const { state } = useStore();
+  const fetchInitialData = useFetchInitialData();
+
+  useEffect(() => {
+    if (state.isLoading) {
+      fetchInitialData();
+    }
+  }, [fetchInitialData, state.isLoading]);
+
   return (
     <AnimatePresence exitBeforeEnter={true}>
       <Router
@@ -14,7 +24,7 @@ const Routes = ({ location }) => {
         key={location.key}
         location={location}>
         <List exact={true} path={'/'} />
-        <Trip path={'/trip/:tripId'} />
+        <Collection path={'/collection/:collectionId'} />
         <Upload path={'/upload-images'} />
       </Router>
     </AnimatePresence>

@@ -1,5 +1,11 @@
 import { useContext } from 'react';
 import { ACTIONS, StoreContext } from '../store';
+import {
+  createCollection as createCollectionApi,
+  createPhotos as createPhotosApi,
+  fetchInitialData as fetchInitialDataApi,
+  updateCollection as updateCollectionApi,
+} from '../api';
 
 export const useStore = () => {
   const store = useContext(StoreContext);
@@ -7,32 +13,48 @@ export const useStore = () => {
   return store;
 };
 
-const getTrip = (state, tripId) => {
-  const trip = state.trips.byId[tripId];
+export const useFetchInitialData = () => {
+  const { dispatch } = useStore();
 
-  if (!trip) {
+  const fetchInitialData = async () => {
+    const response = await fetchInitialDataApi();
+    console.log(response);
+
+    dispatch({
+      payload: response.data,
+      type: ACTIONS.SET_INITIAL_DATA,
+    });
+  };
+
+  return fetchInitialData;
+};
+
+const getCollection = (state, collectionId) => {
+  const collection = state.collections.byId[collectionId];
+
+  if (!collection) {
     return;
   }
 
   return {
-    ...trip,
-    photos: trip.photos.map((id) => {
+    ...collection,
+    photos: collection.photos.map((id) => {
       return state.photos.byId[id];
     }),
   };
 };
 
-export const useTrip = (tripId) => {
+export const useCollection = (collectionId) => {
   const { state } = useStore();
 
-  return getTrip(state, tripId);
+  return getCollection(state, collectionId);
 };
 
-export const useTrips = () => {
+export const useCollections = () => {
   const { state } = useStore();
 
-  return state.trips.allIds.map((id) => {
-    return getTrip(state, id);
+  return state.collections.allIds.map((id) => {
+    return getCollection(state, id);
   });
 };
 
@@ -44,22 +66,48 @@ export const usePhoto = (photoId) => {
   return state.photos.byId[photoId];
 };
 
-export const useCreateTrip = () => {
-  const { dispatch } = useStore();
-
-  const createTrip = (trip) => {
-    dispatch({ payload: trip, type: ACTIONS.CREATE_TRIP });
+export const useCreatePhotos = () => {
+  const createPhotos = async (urls) => {
+    return await createPhotosApi(urls);
   };
 
-  return createTrip;
+  return createPhotos;
 };
 
-export const useAddPhotos = () => {
+export const useCreateCollection = () => {
   const { dispatch } = useStore();
 
-  const addPhotos = (photos, tripId) => {
-    dispatch({ payload: { photos, id: tripId }, type: ACTIONS.ADD_PHOTOS });
+  const createCollection = async ({ collection, photos }) => {
+    console.log(collection, photos);
+    const response = await createCollectionApi({
+      ...collection,
+      photos,
+    });
+
+    dispatch({
+      payload: response.data,
+      type: ACTIONS.CREATE_COLLECTION,
+    });
   };
 
-  return addPhotos;
+  return createCollection;
+};
+
+export const useUpdateCollection = () => {
+  const { dispatch, state } = useStore();
+
+  const updateCollection = async (collection, photos) => {
+    const response = await updateCollectionApi({
+      ...state.collections.byId[collection.id],
+      ...collection,
+      photos,
+    });
+
+    dispatch({
+      payload: response.data,
+      type: ACTIONS.UPDATE_COLLECTION,
+    });
+  };
+
+  return updateCollection;
 };

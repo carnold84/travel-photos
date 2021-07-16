@@ -1,1 +1,6 @@
-export { createPhotos, loadPhoto } from './api';
+export {
+  createCollection,
+  createPhotos,
+  fetchInitialData,
+  updateCollection,
+} from './api';

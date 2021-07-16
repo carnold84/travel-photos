@@ -1,21 +1,21 @@
 import { useNavigate } from '@reach/router';
 import { useState } from 'react';
-import { useAddPhotos, useCreateTrip } from '../../hooks';
+import { useCreateCollection, useUpdateCollection } from '../../hooks';
 import SelectPhotos from './SelectPhotos';
-import SelectTrip from './SelectTrip';
+import SelectCollection from './SelectCollection';
 import './Upload.css';
 
 const STEPS = {
   PHOTOS: 'photos',
-  TRIP: 'trip',
+  COLLECTION: 'collection',
 };
 
 const Upload = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState(STEPS.PHOTOS);
   const [photos, setPhotos] = useState([]);
-  const createTrip = useCreateTrip();
-  const addPhotos = useAddPhotos();
+  const createCollection = useCreateCollection();
+  const updateCollection = useUpdateCollection();
 
   const onCancel = async () => {
     navigate('/', { replace: true });
@@ -25,18 +25,29 @@ const Upload = () => {
     setStep(STEPS.PHOTOS);
   };
 
-  const onGoToTrip = () => {
-    setStep(STEPS.TRIP);
+  const onGoToCollection = () => {
+    setStep(STEPS.COLLECTION);
   };
 
-  const onSave = async (tripId, tripName) => {
-    if (tripId) {
-      addPhotos(photos, tripId);
-    } else {
-      createTrip({
+  const onUpdatePhotos = (data) => {
+    setPhotos([...photos, ...data]);
+  };
+
+  const onSave = async (id, name) => {
+    console.log(id, name);
+    if (id) {
+      updateCollection({
         photos,
-        trip: {
-          name: tripName,
+        collection: {
+          id,
+          name,
+        },
+      });
+    } else {
+      createCollection({
+        photos,
+        collection: {
+          name,
         },
       });
     }
@@ -49,13 +60,17 @@ const Upload = () => {
       {step === STEPS.PHOTOS && (
         <SelectPhotos
           onCancel={onCancel}
-          onNext={onGoToTrip}
+          onNext={onGoToCollection}
+          onUpdate={onUpdatePhotos}
           photos={photos}
-          setPhotos={setPhotos}
         />
       )}
-      {step === STEPS.TRIP && (
-        <SelectTrip onBack={onGoToPhotos} onCancel={onCancel} onSave={onSave} />
+      {step === STEPS.COLLECTION && (
+        <SelectCollection
+          onBack={onGoToPhotos}
+          onCancel={onCancel}
+          onSave={onSave}
+        />
       )}
     </div>
   );

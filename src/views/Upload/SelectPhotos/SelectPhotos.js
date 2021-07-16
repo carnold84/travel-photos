@@ -1,35 +1,8 @@
-import { createPhotos, loadPhoto } from '../../../api';
+import { useCreatePhotos } from '../../../hooks/hooks';
 import './SelectPhotos.css';
 
-const SelectPhotos = ({ onCancel, onNext, photos, setPhotos }) => {
-  const loadPhotos = async (urls) => {
-    let nextPhotos = [...photos, ...createPhotos(urls)];
-    setPhotos(nextPhotos);
-
-    for (const image of nextPhotos) {
-      const imageData = await loadPhoto(image.url);
-
-      nextPhotos = nextPhotos.map((element) => {
-        if (image.id === element.id) {
-          if (imageData) {
-            return {
-              ...element,
-              ...imageData,
-              isLoaded: true,
-            };
-          } else {
-            return {
-              ...element,
-              isLoaded: true,
-            };
-          }
-        }
-        return element;
-      });
-
-      setPhotos(nextPhotos);
-    }
-  };
+const SelectPhotos = ({ onCancel, onNext, onUpdate, photos }) => {
+  const createPhotos = useCreatePhotos();
 
   const onChange = async (evt) => {
     const { files } = evt.target;
@@ -40,32 +13,28 @@ const SelectPhotos = ({ onCancel, onNext, photos, setPhotos }) => {
         urls.push(URL.createObjectURL(file));
       }
 
-      await loadPhotos(urls);
+      let nextPhotos = await createPhotos(urls);
+      onUpdate(nextPhotos.data);
     }
   };
+
+  console.log(photos);
 
   return (
     <div>
       <h2>Choose Photos</h2>
       <input multiple={true} onChange={onChange} type={'file'} />
       <div>
+        {!photos && 'Loading...'}
         {photos &&
-          photos.map((image) => {
-            if (image.isLoaded) {
-              const { id, location, name, url } = image;
-              if (location) {
-                return (
-                  <img
-                    alt={name}
-                    key={id}
-                    src={url}
-                    style={{ width: '140px' }}
-                  />
-                );
-              }
-              return 'No location data';
+          photos.map((photo) => {
+            const { id, location, name, url } = photo;
+            if (location) {
+              return (
+                <img alt={name} key={id} src={url} style={{ width: '140px' }} />
+              );
             }
-            return 'Loading...';
+            return 'No location data';
           })}
       </div>
       <button onClick={onCancel}>Cancel</button>

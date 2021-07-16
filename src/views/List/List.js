@@ -1,22 +1,22 @@
 import { Link } from '@reach/router';
-import { useTrips } from '../../hooks';
+import { useCollections } from '../../hooks';
 import './List.css';
 
 const List = () => {
-  const trips = useTrips();
+  const collections = useCollections();
 
-  console.log(trips);
+  console.log(collections);
 
   return (
     <>
       <Link to={'/upload-images'}>Upload</Link>
-      {trips.length === 0 && <p>No trips</p>}
-      {trips.length > 0 && (
+      {collections.length === 0 && <p>No collections</p>}
+      {collections.length > 0 && (
         <ul>
-          {trips.map(({ id, name }) => {
+          {collections.map(({ id, name }) => {
             return (
               <li key={id}>
-                <Link to={`/trip/${id}`}>{name}</Link>
+                <Link to={`/collection/${id}`}>{name}</Link>
               </li>
             );
           })}

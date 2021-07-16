@@ -3,13 +3,13 @@ import { useMemo, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import ImageModal from '../../components/ImageModal';
 import Map from '../../components/Map';
-import { useTrip } from '../../hooks';
-import './Trip.css';
+import { useCollection } from '../../hooks';
+import './Collection.css';
 
-const Trip = () => {
+const Collection = () => {
   const params = useParams();
-  const tripId = params?.tripId;
-  const trip = useTrip(tripId);
+  const collectionId = params?.collectionId;
+  const collection = useCollection(collectionId);
   const [selectedPhotoId, setSelectedPhotoId] = useState();
 
   const onClose = () => {
@@ -17,7 +17,7 @@ const Trip = () => {
   };
 
   const markers = useMemo(() => {
-    return trip?.photos.map(({ id, latitude, longitude }) => {
+    return collection?.photos.map(({ id, latitude, longitude }) => {
       return {
         id,
         latitude,
@@ -27,10 +27,10 @@ const Trip = () => {
         },
       };
     });
-  }, [trip]);
+  }, [collection]);
 
-  if (!trip) {
-    return "Trip doesn't exist.";
+  if (!collection) {
+    return "Collection doesn't exist.";
   }
 
   return (
@@ -49,4 +49,4 @@ const Trip = () => {
   );
 };
 
-export default Trip;
+export default Collection;
