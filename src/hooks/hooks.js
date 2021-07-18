@@ -32,6 +32,8 @@ export const useFetchInitialData = () => {
 const getCollection = (state, collectionId) => {
   const collection = state.collections.byId[collectionId];
 
+  console.log(state, collection);
+
   if (!collection) {
     return;
   }

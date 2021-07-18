@@ -1,8 +1,8 @@
 import { usePhoto } from '../../hooks';
 import Modal from '../Modal';
-import './ImageModal.css';
+import './PhotoModal.css';
 
-const ImageModal = ({ onClose, photoId }) => {
+const PhotoModal = ({ onClose, photoId }) => {
   const photo = usePhoto(photoId);
 
   let content;
@@ -38,10 +38,10 @@ const ImageModal = ({ onClose, photoId }) => {
   }
 
   return (
-    <Modal id={'image-modal'} onClose={onClose} title={title}>
+    <Modal id={'photo-modal'} onClose={onClose} title={title}>
       {content}
     </Modal>
   );
 };
 
-export default ImageModal;
+export default PhotoModal;

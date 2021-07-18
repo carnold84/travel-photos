@@ -1,20 +1,13 @@
 import { useParams } from '@reach/router';
-import { useMemo, useState } from 'react';
-import { AnimatePresence } from 'framer-motion';
-import ImageModal from '../../components/ImageModal';
+import { useMemo } from 'react';
 import Map from '../../components/Map';
 import { useCollection } from '../../hooks';
 import './Collection.css';
 
-const Collection = () => {
+const Collection = ({ showPhoto }) => {
   const params = useParams();
   const collectionId = params?.collectionId;
   const collection = useCollection(collectionId);
-  const [selectedPhotoId, setSelectedPhotoId] = useState();
-
-  const onClose = () => {
-    setSelectedPhotoId(null);
-  };
 
   const markers = useMemo(() => {
     return collection?.photos.map(({ id, latitude, longitude }) => {
@@ -23,11 +16,11 @@ const Collection = () => {
         latitude,
         longitude,
         onClick: () => {
-          setSelectedPhotoId(id);
+          showPhoto(id);
         },
       };
     });
-  }, [collection]);
+  }, [collection, showPhoto]);
 
   if (!collection) {
     return "Collection doesn't exist.";
@@ -36,15 +29,6 @@ const Collection = () => {
   return (
     <>
       <Map markers={markers} />
-      <AnimatePresence>
-        {selectedPhotoId && (
-          <ImageModal
-            key={'image'}
-            onClose={onClose}
-            photoId={selectedPhotoId}
-          />
-        )}
-      </AnimatePresence>
     </>
   );
 };

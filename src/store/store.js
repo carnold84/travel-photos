@@ -26,7 +26,12 @@ const setInitialDataReducer = (state, { collections }) => {
 
   collections.forEach((collection) => {
     allCollectionsIds.push(collection.id);
-    collectionsById[collection.id] = collection;
+    collectionsById[collection.id] = {
+      ...collection,
+      photos: collection.photos.map(({ id }) => {
+        return id;
+      }),
+    };
 
     collection.photos.forEach((photo) => {
       allPhotosIds.push(photo.id);
@@ -48,9 +53,8 @@ const setInitialDataReducer = (state, { collections }) => {
 };
 
 const createCollectionReducer = (state, collection) => {
-  console.log(collection);
   const photosById = {};
-  const allPhotosIds = collection.photos.map((photo) => {
+  const photosIds = collection.photos.map((photo) => {
     photosById[photo.id] = photo;
 
     return photo.id;
@@ -62,11 +66,14 @@ const createCollectionReducer = (state, collection) => {
       allIds: [...state.collections.allIds, collection.id],
       byId: {
         ...state.collections.byId,
-        [collection.id]: collection,
+        [collection.id]: {
+          ...collection,
+          photos: photosIds,
+        },
       },
     },
     photos: {
-      allIds: [...state.photos.allIds, ...allPhotosIds],
+      allIds: [...state.photos.allIds, ...photosIds],
       byId: {
         ...state.photos.byId,
         ...photosById,
