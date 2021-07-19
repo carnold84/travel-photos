@@ -104,6 +104,33 @@ const createPhoto = async (url) => {
 
       if (latitude && longitude) {
         const location = await getLocation({ latitude, longitude });
+
+        const address = [];
+        let title = '';
+        if (location) {
+          const { city, country, suburb, town, village } = location.address;
+          let metro;
+
+          if (city) {
+            metro = city;
+          } else if (town) {
+            metro = town;
+          }
+
+          if (suburb && metro !== suburb) {
+            address.push(suburb);
+          }
+
+          if (metro) {
+            address.push(metro);
+          }
+
+          if (country) {
+            address.push(country);
+          }
+
+          title = address.join(', ');
+        }
         photo = {
           ...photo,
           created: CreateDate,
@@ -112,6 +139,7 @@ const createPhoto = async (url) => {
           longitude,
           origHeight: ImageHeight,
           origWidth: ImageWidth,
+          title,
         };
       }
 

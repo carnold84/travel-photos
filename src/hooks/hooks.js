@@ -18,7 +18,6 @@ export const useFetchInitialData = () => {
 
   const fetchInitialData = async () => {
     const response = await fetchInitialDataApi();
-    console.log(response);
 
     dispatch({
       payload: response.data,
@@ -31,8 +30,6 @@ export const useFetchInitialData = () => {
 
 const getCollection = (state, collectionId) => {
   const collection = state.collections.byId[collectionId];
-
-  console.log(state, collection);
 
   if (!collection) {
     return;
@@ -63,8 +60,6 @@ export const useCollections = () => {
 export const usePhoto = (photoId) => {
   const { state } = useStore();
 
-  console.log('usePhoto', photoId);
-
   return state.photos.byId[photoId];
 };
 
@@ -80,7 +75,6 @@ export const useCreateCollection = () => {
   const { dispatch } = useStore();
 
   const createCollection = async ({ collection, photos }) => {
-    console.log(collection, photos);
     const response = await createCollectionApi({
       ...collection,
       photos,

@@ -6,14 +6,12 @@ import List from './views/List';
 import Collection from './views/Collection';
 import Upload from './views/Upload';
 import { useEffect, useState } from 'react';
-import ImageModal from './components/ImageModal';
+import PhotoModal from './modals/PhotoModal';
 
 const Routes = ({ location }) => {
   const [photoId, setPhotoId] = useState(null);
   const { state } = useStore();
   const fetchInitialData = useFetchInitialData();
-
-  console.log(state);
 
   useEffect(() => {
     if (state.isLoading) {
@@ -34,21 +32,26 @@ const Routes = ({ location }) => {
   };
 
   return (
-    <AnimatePresence exitBeforeEnter={true}>
-      <Router
-        basepath={process.env.PUBLIC_URL}
-        key={location?.key}
-        location={location}>
-        <List exact={true} path={'/'} />
-        <Collection path={'/collection/:collectionId'} showPhoto={showPhoto} />
-        <Upload path={'/upload-images'} />
-      </Router>
+    <>
       <AnimatePresence exitBeforeEnter={true}>
+        <Router
+          basepath={process.env.PUBLIC_URL}
+          key={location?.key}
+          location={location}>
+          <List exact={true} path={'/'} />
+          <Collection
+            path={'/collection/:collectionId'}
+            showPhoto={showPhoto}
+          />
+          <Upload path={'/upload-images'} />
+        </Router>
+      </AnimatePresence>
+      <AnimatePresence>
         {photoId && (
-          <ImageModal key={'image'} onClose={onClose} photoId={photoId} />
+          <PhotoModal key={'image'} onClose={onClose} photoId={photoId} />
         )}
       </AnimatePresence>
-    </AnimatePresence>
+    </>
   );
 };
 

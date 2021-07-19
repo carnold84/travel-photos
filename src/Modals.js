@@ -1,7 +1,7 @@
 import { navigate, useLocation } from '@reach/router';
 import { AnimatePresence } from 'framer-motion';
 
-import ImageModal from './components/ImageModal';
+import PhotoModal from './modals/PhotoModal';
 
 const Modals = () => {
   const location = useLocation();
@@ -15,7 +15,7 @@ const Modals = () => {
   return (
     <AnimatePresence exitBeforeEnter={true}>
       {photoId && (
-        <ImageModal key={'image'} onClose={onClose} photoId={photoId} />
+        <PhotoModal key={'image'} onClose={onClose} photoId={photoId} />
       )}
     </AnimatePresence>
   );
