@@ -1,25 +1,36 @@
-.image-modal {
-  background-color: #ffffff;
+.list {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  position: absolute;
   width: 100%;
-  z-index: 1000;
 }
 
-.image-modal .header {
+.list-header {
   align-items: center;
   display: flex;
   flex-shrink: 0;
-  height: 80px;
   justify-content: space-between;
-  padding: 0 25px;
-  position: absolute;
+  padding: 25px;
   width: 100%;
 }
 
-.image-modal .close-btn {
+.list-logo {
+  height: 34px;
+  margin: 0 10px 0 0;
+}
+
+.list-logo path {
+  background: linear-gradient(204.14deg, #951cce 5%, #c92db9 83.64%);
+}
+
+.list-title {
+  align-items: center;
+  color: #c92db9;
+  display: flex;
+  font-size: 2.2rem;
+  margin: 0;
+}
+
+.list-upload-btn {
   align-items: center;
   background-color: rgba(255, 255, 255, 0.35);
   border: none;
@@ -34,29 +45,13 @@
   width: 34px;
 }
 
-.image-modal .close-btn:hover {
+.list-upload-btn:hover {
   background-color: rgba(255, 255, 255, 0.6);
   fill: rgba(0, 0, 0, 1);
 }
 
-.image-modal .close-btn svg {
-  fill: inherit;
-  height: 16px;
-  width: 16px;
-}
-
-.image-modal .content {
-  align-items: center;
-  display: flex;
-  flex-grow: 1;
-  height: 100%;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.image-modal img {
-  height: 100%;
-  object-fit: contain;
-  padding: 30px;
-  width: 100%;
+.list-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr;
 }

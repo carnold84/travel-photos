@@ -1,6 +1,8 @@
-import { useParams } from '@reach/router';
+import { navigate, useParams } from '@reach/router';
 import { useMemo } from 'react';
+import Button from '../../components/Button';
 import Map from '../../components/Map';
+import View from '../../components/View';
 import { useCollection } from '../../hooks';
 import './Collection.css';
 
@@ -26,10 +28,17 @@ const Collection = ({ showPhoto }) => {
     return "Collection doesn't exist.";
   }
 
+  console.log(collection);
+
   return (
-    <>
+    <View
+      id={'collection'}
+      key={'collection'}
+      noContentPadding={true}
+      onBack={() => navigate('/')}
+      title={collection?.name}>
       <Map markers={markers} />
-    </>
+    </View>
   );
 };
 

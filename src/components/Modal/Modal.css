@@ -10,52 +10,40 @@
   z-index: 10000;
 }
 
-.modal .header {
+.modal-header {
   align-items: center;
   display: flex;
   flex-shrink: 0;
-  height: 80px;
-  justify-content: space-between;
-  padding: 0 25px;
+  justify-content: flex-start;
+  padding: 25px;
   width: 100%;
 }
 
-.modal .close-btn {
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.35);
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  display: flex;
-  fill: rgba(0, 0, 0, 0.6);
-  height: 34px;
-  justify-content: center;
+.modal-title {
+  color: #444444;
+  font-size: 2rem;
   margin: 0;
-  padding: 0;
-  width: 34px;
 }
 
-.modal .close-btn:hover {
-  background-color: rgba(255, 255, 255, 0.6);
-  fill: rgba(0, 0, 0, 1);
+.modal-close-btn {
+  margin: 0 15px 0 0;
+  width: 36px;
 }
 
-.modal .close-btn svg {
-  fill: inherit;
+.modal-close-btn svg {
   height: 16px;
   width: 16px;
 }
 
-.modal .content {
+.modal-content {
   align-items: center;
   display: flex;
   flex-grow: 1;
-  height: 100%;
   justify-content: center;
   overflow: hidden;
 }
 
-.modal img {
+.modal-img {
   height: 100%;
   object-fit: contain;
   padding: 30px;
