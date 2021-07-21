@@ -1,15 +1,18 @@
 import { navigate, useParams } from '@reach/router';
-import { useMemo } from 'react';
-import Button from '../../components/Button';
+import { useMemo, useState } from 'react';
+import Layout from '../../components/Layout';
 import Map from '../../components/Map';
 import View from '../../components/View';
 import { useCollection } from '../../hooks';
 import './Collection.css';
 
-const Collection = ({ showPhoto }) => {
+const Collection = () => {
   const params = useParams();
   const collectionId = params?.collectionId;
-  const collection = useCollection(collectionId);
+  const initialCollection = useCollection(collectionId);
+  const collection = useMemo(() => {
+    return initialCollection;
+  }, []);
 
   const markers = useMemo(() => {
     return collection?.photos.map(({ id, latitude, longitude }) => {
@@ -18,26 +21,29 @@ const Collection = ({ showPhoto }) => {
         latitude,
         longitude,
         onClick: () => {
-          showPhoto(id);
+          navigate(`${collection?.id}/photo/${id}`);
         },
       };
     });
-  }, [collection, showPhoto]);
+  }, [collection]);
 
-  if (!collection) {
-    return "Collection doesn't exist.";
+  let content;
+
+  if (collection) {
+    content = <Map markers={markers} />;
+  } else {
+    content = <div>Collection doesn't exist.</div>;
   }
 
-  console.log(collection);
-
   return (
-    <View
-      id={'collection'}
-      key={'collection'}
-      noContentPadding={true}
-      onBack={() => navigate('/')}
-      title={collection?.name}>
-      <Map markers={markers} />
+    <View level={1}>
+      <Layout
+        id={'collection'}
+        noContentPadding={true}
+        onBack={() => navigate('/')}
+        title={collection?.name}>
+        {content}
+      </Layout>
     </View>
   );
 };

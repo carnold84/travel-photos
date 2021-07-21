@@ -5,13 +5,10 @@ import './routes.css';
 import { useFetchInitialData, useStore } from './hooks';
 import List from './views/List';
 import Collection from './views/Collection';
-import Upload from './views/Upload';
-import { useEffect, useState } from 'react';
-import PhotoModal from './modals/PhotoModal';
-import UploadModal from './modals/UploadModal';
+import { useEffect } from 'react';
+import Photo from './views/Photo/Photo';
 
 const Routes = () => {
-  const [modal, setModal] = useState(null);
   const { state } = useStore();
   const fetchInitialData = useFetchInitialData();
 
@@ -25,48 +22,19 @@ const Routes = () => {
     return 'Loading...';
   }
 
-  const showPhoto = (id) => {
-    setModal({
-      id,
-      type: 'photo',
-    });
-  };
-
-  const showUpload = () => {
-    setModal({
-      type: 'upload',
-    });
-  };
-
-  const onClose = () => {
-    setModal(null);
-  };
-
   return (
     <Location>
       {({ location }) => (
         <>
-          <AnimatePresence exitBeforeEnter={true} initial={false}>
-            <Router
-              basepath={process.env.PUBLIC_URL}
-              className={'router'}
-              key={location.pathname}
-              location={location}>
-              <List exact={true} path={'/'} showUpload={showUpload} />
-              <Collection
+          <AnimatePresence initial={false}>
+            <Router key={location.pathname} location={location}>
+              <List exact={true} path={'/'} />
+              <Collection exact={true} path={'/collection/:collectionId'} />
+              <Photo
                 exact={true}
-                path={'/collection/:collectionId'}
-                showPhoto={showPhoto}
+                path={'/collection/:collectionId/photo/:id'}
               />
             </Router>
-          </AnimatePresence>
-          <AnimatePresence>
-            {modal?.type === 'photo' && (
-              <PhotoModal key={'image'} onClose={onClose} photoId={modal.id} />
-            )}
-            {modal?.type === 'upload' && (
-              <UploadModal key={'upload'} onClose={onClose} />
-            )}
           </AnimatePresence>
         </>
       )}

@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import Button from '../Button';
 import './Layout.css';
 
@@ -12,25 +11,10 @@ const Layout = ({
   title,
   ...rest
 }) => {
-  const transition = { ease: 'easeInOut', duration: 0.3 };
   return (
     <div className="layout" {...rest}>
       <header className={'layout-header'}>
-        <motion.div
-          animate={{
-            opacity: 1,
-            x: 1,
-            transition,
-          }}
-          className={'layout-left-controls'}
-          exit={{
-            opacity: 0,
-            x: '-50px',
-            transition,
-          }}
-          initial={{ opacity: 0, x: 0 }}
-          key={`${id}-left-controls`}
-          {...rest}>
+        <div className={'layout-left-controls'} {...rest}>
           {onBack && (
             <Button className={'layout-back-btn'} onClick={onBack}>
               <svg
@@ -44,24 +28,8 @@ const Layout = ({
           )}
           {title && <h3 className={'layout-title'}>{title}</h3>}
           {leftControls}
-        </motion.div>
-        <motion.div
-          animate={{
-            opacity: 1,
-            x: 1,
-            transition,
-          }}
-          className={'layout-right-controls'}
-          exit={{
-            opacity: 0,
-            x: '50px',
-            transition,
-          }}
-          initial={{ opacity: 0, x: 0 }}
-          key={`${id}-right-controls`}
-          {...rest}>
-          {rightControls}
-        </motion.div>
+        </div>
+        <div className={'layout-right-controls'}>{rightControls}</div>
       </header>
       <main
         className={[

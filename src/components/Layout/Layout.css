@@ -1,6 +1,11 @@
 .layout {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
 
 .layout-header {
@@ -37,6 +42,8 @@
 }
 
 .layout-content {
+  background-color: #ffffff;
+  flex-grow: 1;
   padding: 0 25px 25px;
 }
 
