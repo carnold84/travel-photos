@@ -1,8 +1,10 @@
-import { useNavigate } from '@reach/router';
 import { useState } from 'react';
+import { navigate } from '@reach/router';
 import { useCreateCollection, useUpdateCollection } from '../../hooks';
 import SelectPhotos from './SelectPhotos';
 import SelectCollection from './SelectCollection';
+import View from '../../components/View';
+import Layout from '../../components/Layout';
 import './Upload.css';
 
 const STEPS = {
@@ -10,16 +12,11 @@ const STEPS = {
   COLLECTION: 'collection',
 };
 
-const Upload = () => {
-  const navigate = useNavigate();
+const Upload = ({ onClose }) => {
   const [step, setStep] = useState(STEPS.PHOTOS);
   const [photos, setPhotos] = useState([]);
   const createCollection = useCreateCollection();
   const updateCollection = useUpdateCollection();
-
-  const onCancel = async () => {
-    navigate('/', { replace: true });
-  };
 
   const onGoToPhotos = () => {
     setStep(STEPS.PHOTOS);
@@ -30,6 +27,7 @@ const Upload = () => {
   };
 
   const onUpdatePhotos = (data) => {
+    console.log(data);
     setPhotos([...photos, ...data]);
   };
 
@@ -52,27 +50,33 @@ const Upload = () => {
       });
     }
 
-    onCancel();
+    onClose();
   };
 
   return (
-    <div>
-      {step === STEPS.PHOTOS && (
-        <SelectPhotos
-          onCancel={onCancel}
-          onNext={onGoToCollection}
-          onUpdate={onUpdatePhotos}
-          photos={photos}
-        />
-      )}
-      {step === STEPS.COLLECTION && (
-        <SelectCollection
-          onBack={onGoToPhotos}
-          onCancel={onCancel}
-          onSave={onSave}
-        />
-      )}
-    </div>
+    <View level={2}>
+      <Layout
+        id={'upload'}
+        noContentPadding={true}
+        onBack={() => navigate('/')}
+        title={'Add Photos'}>
+        {step === STEPS.PHOTOS && (
+          <SelectPhotos
+            onCancel={onClose}
+            onNext={onGoToCollection}
+            onUpdate={onUpdatePhotos}
+            photos={photos}
+          />
+        )}
+        {step === STEPS.COLLECTION && (
+          <SelectCollection
+            onBack={onGoToPhotos}
+            onCancel={onClose}
+            onSave={onSave}
+          />
+        )}
+      </Layout>
+    </View>
   );
 };
 

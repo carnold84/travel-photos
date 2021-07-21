@@ -53,5 +53,23 @@
 .list-grid {
   display: grid;
   gap: 20px;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 380px) {
+  .list-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 680px) {
+  .list-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 880px) {
+  .list-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }

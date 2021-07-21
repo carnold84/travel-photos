@@ -80,6 +80,8 @@ export const useCreateCollection = () => {
       photos,
     });
 
+    console.log(JSON.stringify(response.data));
+
     dispatch({
       payload: response.data,
       type: ACTIONS.CREATE_COLLECTION,

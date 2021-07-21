@@ -1,0 +1,340 @@
+{
+  "collections": [
+    {
+      "name": "Perth 2019",
+      "photos": [
+        {
+          "id": "3f010189-2855-4dde-921e-47a7df1761cc",
+          "url": "https://res.cloudinary.com/carnold/image/upload/v1626845001/travel_photos/image1.jpg",
+          "thumbUrl": "https://res.cloudinary.com/carnold/image/upload/w_330/v1626845001/travel_photos/image1.jpg",
+          "created": "2019-11-19T21:58:52.000Z",
+          "latitude": -31.997447972222222,
+          "location": {
+            "place_id": 95716044,
+            "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
+            "osm_type": "way",
+            "osm_id": 24349503,
+            "lat": "-31.9985805",
+            "lon": "115.5429329",
+            "display_name": "Forrest Avenue, Rottnest Island, Kingstown, City Of Cockburn, Western Australia, 6161, Australia",
+            "address": {
+              "road": "Forrest Avenue",
+              "suburb": "Rottnest Island",
+              "village": "Kingstown",
+              "municipality": "City Of Cockburn",
+              "state": "Western Australia",
+              "postcode": "6161",
+              "country": "Australia",
+              "country_code": "au"
+            },
+            "boundingbox": [
+              "-31.9991279",
+              "-31.9985805",
+              "115.5429329",
+              "115.5432424"
+            ]
+          },
+          "longitude": 115.543868,
+          "origHeight": 2112,
+          "origWidth": 4608,
+          "name": "Rottnest Island, Australia"
+        },
+        {
+          "id": "46c78a04-a1ee-4d62-b0c2-48d7be84c904",
+          "url": "https://res.cloudinary.com/carnold/image/upload/v1626845010/travel_photos/image2.jpg",
+          "thumbUrl": "https://res.cloudinary.com/carnold/image/upload/w_330/v1626845010/travel_photos/image2.jpg",
+          "created": "2019-11-20T00:23:08.000Z",
+          "latitude": -32.01857197222222,
+          "location": {
+            "place_id": 95554124,
+            "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
+            "osm_type": "way",
+            "osm_id": 24349619,
+            "lat": "-32.018544426936124",
+            "lon": "115.49357055826945",
+            "display_name": "Karlak Boodjar Road, Rottnest Island, City Of Cockburn, Western Australia, 6161, Australia",
+            "address": {
+              "road": "Karlak Boodjar Road",
+              "suburb": "Rottnest Island",
+              "municipality": "City Of Cockburn",
+              "state": "Western Australia",
+              "postcode": "6161",
+              "country": "Australia",
+              "country_code": "au"
+            },
+            "boundingbox": [
+              "-32.0185888",
+              "-32.0156992",
+              "115.4935076",
+              "115.4977125"
+            ]
+          },
+          "longitude": 115.49358997222222,
+          "origHeight": 2112,
+          "origWidth": 4608,
+          "name": "Rottnest Island, Australia"
+        },
+        {
+          "id": "8d88c735-9bc6-432a-8994-24e5ae3c05e4",
+          "url": "https://res.cloudinary.com/carnold/image/upload/v1626845006/travel_photos/image3.jpg",
+          "thumbUrl": "https://res.cloudinary.com/carnold/image/upload/w_330/v1626845006/travel_photos/image3.jpg",
+          "created": "2019-11-20T00:57:37.000Z",
+          "latitude": -32.002192972222225,
+          "location": {
+            "place_id": 134716724,
+            "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
+            "osm_type": "way",
+            "osm_id": 188861330,
+            "lat": "-32.00219543770808",
+            "lon": "115.52391880748945",
+            "display_name": "Digby Drive, Rottnest Island, Geordie Bay, City Of Cockburn, Western Australia, 6161, Australia",
+            "address": {
+              "road": "Digby Drive",
+              "suburb": "Rottnest Island",
+              "village": "Geordie Bay",
+              "municipality": "City Of Cockburn",
+              "state": "Western Australia",
+              "postcode": "6161",
+              "country": "Australia",
+              "country_code": "au"
+            },
+            "boundingbox": [
+              "-32.0041092",
+              "-31.9976141",
+              "115.515098",
+              "115.5344706"
+            ]
+          },
+          "longitude": 115.52391899999999,
+          "origHeight": 2112,
+          "origWidth": 4608,
+          "name": "Rottnest Island, Australia"
+        },
+        {
+          "id": "7a8faf60-79d8-4504-a7dd-5c89d6a6a973",
+          "url": "https://res.cloudinary.com/carnold/image/upload/v1626845005/travel_photos/image4.jpg",
+          "thumbUrl": "https://res.cloudinary.com/carnold/image/upload/w_330/v1626845005/travel_photos/image4.jpg",
+          "created": "2019-11-20T05:51:26.000Z",
+          "latitude": -31.954440972222223,
+          "location": {
+            "place_id": 124779006,
+            "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
+            "osm_type": "way",
+            "osm_id": 147048587,
+            "lat": "-31.955215250000002",
+            "lon": "115.85894025629688",
+            "display_name": "Calibre House, London Court, Perth, City of Perth, Western Australia, 6000, Australia",
+            "address": {
+              "building": "Calibre House",
+              "road": "London Court",
+              "suburb": "Perth",
+              "city": "Perth",
+              "county": "City of Perth",
+              "state": "Western Australia",
+              "postcode": "6000",
+              "country": "Australia",
+              "country_code": "au"
+            },
+            "boundingbox": [
+              "-31.9553846",
+              "-31.9550454",
+              "115.8587472",
+              "115.8591333"
+            ]
+          },
+          "longitude": 115.85913897222221,
+          "origHeight": 2112,
+          "origWidth": 4608,
+          "name": "Perth, Australia"
+        }
+      ],
+      "id": "e602c162-33da-492a-9a95-f19ed7ce5735"
+    },
+    {
+      "id": "2",
+      "name": "New Zealand 2021",
+      "photos": [
+        {
+          "id": "270bf989-654c-4e63-b906-08225fc7bf93",
+          "url": "https://res.cloudinary.com/carnold/image/upload/v1626845011/travel_photos/image5.jpg",
+          "thumbUrl": "https://res.cloudinary.com/carnold/image/upload/w_330/v1626845011/travel_photos/image5.jpg",
+          "created": "2021-04-24T04:30:28.000Z",
+          "latitude": -40.354384,
+          "location": {
+            "place_id": 62160058,
+            "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
+            "osm_type": "node",
+            "osm_id": 5546976180,
+            "lat": "-40.3544363",
+            "lon": "175.6143679",
+            "display_name": "515A, Main Street, West End, Palmerston North, Manawatu-Whanganui, 4440, New Zealand",
+            "address": {
+              "house_number": "515A",
+              "road": "Main Street",
+              "suburb": "West End",
+              "city": "Palmerston North",
+              "region": "Manawatu-Whanganui",
+              "postcode": "4440",
+              "country": "New Zealand",
+              "country_code": "nz"
+            },
+            "boundingbox": [
+              "-40.3544863",
+              "-40.3543863",
+              "175.6143179",
+              "175.6144179"
+            ]
+          },
+          "longitude": 175.614373,
+          "origHeight": 2112,
+          "origWidth": 4608,
+          "name": "West End, Palmerston North, New Zealand"
+        },
+        {
+          "id": "c14140db-e013-4c45-a355-9ee754cdd73d",
+          "url": "https://res.cloudinary.com/carnold/image/upload/v1626845014/travel_photos/image6.jpg",
+          "thumbUrl": "https://res.cloudinary.com/carnold/image/upload/w_330/v1626845014/travel_photos/image6.jpg",
+          "created": "2021-04-24T04:30:43.000Z",
+          "latitude": -40.354384,
+          "location": {
+            "place_id": 62160058,
+            "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
+            "osm_type": "node",
+            "osm_id": 5546976180,
+            "lat": "-40.3544363",
+            "lon": "175.6143679",
+            "display_name": "515A, Main Street, West End, Palmerston North, Manawatu-Whanganui, 4440, New Zealand",
+            "address": {
+              "house_number": "515A",
+              "road": "Main Street",
+              "suburb": "West End",
+              "city": "Palmerston North",
+              "region": "Manawatu-Whanganui",
+              "postcode": "4440",
+              "country": "New Zealand",
+              "country_code": "nz"
+            },
+            "boundingbox": [
+              "-40.3544863",
+              "-40.3543863",
+              "175.6143179",
+              "175.6144179"
+            ]
+          },
+          "longitude": 175.614373,
+          "origHeight": 2112,
+          "origWidth": 4608,
+          "name": "West End, Palmerston North, New Zealand"
+        },
+        {
+          "id": "d784ea48-ff0a-4b11-acb9-75b0c1e0c804",
+          "url": "https://res.cloudinary.com/carnold/image/upload/v1626845003/travel_photos/image7.jpg",
+          "thumbUurl": "https://res.cloudinary.com/carnold/image/upload//w_330/v1626845003/travel_photos/image7.jpg",
+          "created": "2021-04-24T04:31:37.000Z",
+          "latitude": -40.354429,
+          "location": {
+            "place_id": 138254703,
+            "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
+            "osm_type": "way",
+            "osm_id": 201306718,
+            "lat": "-40.354489150000006",
+            "lon": "175.61336109722833",
+            "display_name": "Downtown Plaza, Main Street, West End, Palmerston North, Manawatu-Whanganui, 4440, New Zealand",
+            "address": {
+              "shop": "Downtown Plaza",
+              "road": "Main Street",
+              "suburb": "West End",
+              "city": "Palmerston North",
+              "region": "Manawatu-Whanganui",
+              "postcode": "4440",
+              "country": "New Zealand",
+              "country_code": "nz"
+            },
+            "boundingbox": [
+              "-40.3550862",
+              "-40.3538809",
+              "175.6125692",
+              "175.6141563"
+            ]
+          },
+          "longitude": 175.6138239722222,
+          "origHeight": 2112,
+          "origWidth": 4608,
+          "name": "West End, Palmerston North, New Zealand"
+        },
+        {
+          "id": "316569b1-344f-47b0-bbac-80d890009688",
+          "url": "https://res.cloudinary.com/carnold/image/upload/v1626845012/travel_photos/image8.jpg",
+          "thumbUrl": "https://res.cloudinary.com/carnold/image/upload/w_330/v1626845012/travel_photos/image8.jpg",
+          "created": "2021-04-24T04:32:12.000Z",
+          "latitude": -40.354429,
+          "location": {
+            "place_id": 138254703,
+            "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
+            "osm_type": "way",
+            "osm_id": 201306718,
+            "lat": "-40.354489150000006",
+            "lon": "175.61336109722833",
+            "display_name": "Downtown Plaza, Main Street, West End, Palmerston North, Manawatu-Whanganui, 4440, New Zealand",
+            "address": {
+              "shop": "Downtown Plaza",
+              "road": "Main Street",
+              "suburb": "West End",
+              "city": "Palmerston North",
+              "region": "Manawatu-Whanganui",
+              "postcode": "4440",
+              "country": "New Zealand",
+              "country_code": "nz"
+            },
+            "boundingbox": [
+              "-40.3550862",
+              "-40.3538809",
+              "175.6125692",
+              "175.6141563"
+            ]
+          },
+          "longitude": 175.6138239722222,
+          "origHeight": 2112,
+          "origWidth": 4608,
+          "name": "West End, Palmerston North, New Zealand"
+        },
+        {
+          "id": "ddf70b77-9d65-4313-9d0f-0a153499590f",
+          "url": "https://res.cloudinary.com/carnold/image/upload/v1626845008/travel_photos/image9.jpg",
+          "thumbUrl": "https://res.cloudinary.com/carnold/image/upload/w_330/v1626845008/travel_photos/image9.jpg",
+          "created": "2021-04-24T04:33:14.000Z",
+          "latitude": -40.354075972222226,
+          "location": {
+            "place_id": 138254703,
+            "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
+            "osm_type": "way",
+            "osm_id": 201306718,
+            "lat": "-40.354489150000006",
+            "lon": "175.61336109722833",
+            "display_name": "Downtown Plaza, Main Street, West End, Palmerston North, Manawatu-Whanganui, 4440, New Zealand",
+            "address": {
+              "shop": "Downtown Plaza",
+              "road": "Main Street",
+              "suburb": "West End",
+              "city": "Palmerston North",
+              "region": "Manawatu-Whanganui",
+              "postcode": "4440",
+              "country": "New Zealand",
+              "country_code": "nz"
+            },
+            "boundingbox": [
+              "-40.3550862",
+              "-40.3538809",
+              "175.6125692",
+              "175.6141563"
+            ]
+          },
+          "longitude": 175.61358099999998,
+          "origHeight": 2112,
+          "origWidth": 4608,
+          "name": "West End, Palmerston North, New Zealand"
+        }
+      ]
+    }
+  ]
+}

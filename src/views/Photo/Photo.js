@@ -1,5 +1,5 @@
 import { navigate, useParams } from '@reach/router';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import Layout from '../../components/Layout';
 import View from '../../components/View';
 import { usePhoto } from '../../hooks';
@@ -15,14 +15,13 @@ const Photo = () => {
   let content = 'Photo not found';
 
   if (photo) {
-    content = <img alt={''} src={photo?.url} />;
+    content = <img className={'photo-img'} alt={''} src={photo?.url} />;
   }
 
   return (
     <View level={2}>
       <Layout
         id={'photo'}
-        noContentPadding={true}
         onBack={() => navigate(`/collection/${params.collectionId}`)}
         title={photo?.name}>
         {content}

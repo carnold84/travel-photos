@@ -7,6 +7,7 @@ import List from './views/List';
 import Collection from './views/Collection';
 import { useEffect } from 'react';
 import Photo from './views/Photo/Photo';
+import Upload from './views/Upload';
 
 const Routes = () => {
   const { state } = useStore();
@@ -25,18 +26,14 @@ const Routes = () => {
   return (
     <Location>
       {({ location }) => (
-        <>
-          <AnimatePresence initial={false}>
-            <Router key={location.pathname} location={location}>
-              <List exact={true} path={'/'} />
-              <Collection exact={true} path={'/collection/:collectionId'} />
-              <Photo
-                exact={true}
-                path={'/collection/:collectionId/photo/:id'}
-              />
-            </Router>
-          </AnimatePresence>
-        </>
+        <AnimatePresence initial={false}>
+          <Router key={location.pathname} location={location}>
+            <List exact={true} path={'/'} />
+            <Collection exact={true} path={'/collection/:collectionId'} />
+            <Upload exact={true} path={'/upload'} />
+            <Photo exact={true} path={'/collection/:collectionId/photo/:id'} />
+          </Router>
+        </AnimatePresence>
       )}
     </Location>
   );

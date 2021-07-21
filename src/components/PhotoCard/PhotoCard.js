@@ -14,6 +14,12 @@ const PhotoCard = ({ imageUrl, meta, onClick, title, to, ...rest }) => {
       setImgUrl(null);
     };
     img.src = imageUrl;
+
+    return () => {
+      img.onload = null;
+      img.onerror = null;
+      img.src = null;
+    };
   }, [imageUrl]);
 
   return (

@@ -1,5 +1,5 @@
 import { navigate, useParams } from '@reach/router';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import Layout from '../../components/Layout';
 import Map from '../../components/Map';
 import View from '../../components/View';

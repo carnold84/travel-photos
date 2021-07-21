@@ -12,7 +12,7 @@ const PhotoModal = ({ onClose, photoId }) => {
   }
 
   return (
-    <Modal id={'photo-modal'} onClose={onClose} title={photo?.title}>
+    <Modal id={'photo-modal'} onClose={onClose} title={photo?.name}>
       {content}
     </Modal>
   );

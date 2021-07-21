@@ -1,11 +1,12 @@
 import exifr from 'exifr';
 import { v4 as uuidV4 } from 'uuid';
+import demoData from './demo-data.json';
 
 const KEY = 'travel_photos';
 
 const getData = async () => {
   let value = await localStorage.getItem(KEY);
-  value = value ? JSON.parse(value) : { collections: [] };
+  value = JSON.parse(value);
 
   return value;
 };
@@ -15,7 +16,12 @@ const updateData = async (data) => {
 };
 
 export const fetchInitialData = async () => {
-  const data = await getData();
+  let data = await getData();
+
+  if (data === null) {
+    data = demoData;
+    await updateData(data);
+  }
 
   return {
     data,
@@ -28,7 +34,6 @@ export const createCollection = async (collection) => {
     ...collection,
     id: uuidV4(),
   };
-  console.log(nextCollection);
 
   const data = await getData();
   updateData({
@@ -106,7 +111,7 @@ const createPhoto = async (url) => {
         const location = await getLocation({ latitude, longitude });
 
         const address = [];
-        let title = '';
+        let name = '';
         if (location) {
           const { city, country, suburb, town, village } = location.address;
           let metro;
@@ -129,7 +134,7 @@ const createPhoto = async (url) => {
             address.push(country);
           }
 
-          title = address.join(', ');
+          name = address.join(', ');
         }
         photo = {
           ...photo,
@@ -139,7 +144,7 @@ const createPhoto = async (url) => {
           longitude,
           origHeight: ImageHeight,
           origWidth: ImageWidth,
-          title,
+          name,
         };
       }
 

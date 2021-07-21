@@ -1,3 +1,4 @@
+import { navigate } from '@reach/router';
 import { motion } from 'framer-motion';
 import Button from '../../components/Button';
 import Layout from '../../components/Layout';
@@ -5,7 +6,7 @@ import PhotoCard from '../../components/PhotoCard';
 import { useCollections } from '../../hooks';
 import './List.css';
 
-const List = ({ showUpload }) => {
+const List = () => {
   const collections = useCollections();
 
   return (
@@ -50,7 +51,7 @@ const List = ({ showUpload }) => {
         }
         rightControls={
           <Button
-            onClick={showUpload}
+            onClick={() => navigate('/upload')}
             style={{ height: '40px', width: '40px' }}
             title={'Upload'}>
             <svg
@@ -66,8 +67,8 @@ const List = ({ showUpload }) => {
         {collections.length > 0 && (
           <div className={'list-grid'}>
             {collections.map(({ id, name, photos }) => {
-              console.log(photos);
               const numPhotos = photos.length;
+
               return (
                 <PhotoCard
                   key={id}
@@ -76,7 +77,7 @@ const List = ({ showUpload }) => {
                       ? `${numPhotos} photo`
                       : `${numPhotos} photos`
                   }
-                  imageUrl={photos[0]?.url}
+                  imageUrl={photos[0]?.thumbUrl}
                   title={name}
                   to={`/collection/${id}`}
                 />

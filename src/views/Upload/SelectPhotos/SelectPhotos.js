@@ -14,6 +14,8 @@ const SelectPhotos = ({ onCancel, onNext, onUpdate, photos }) => {
       }
 
       let nextPhotos = await createPhotos(urls);
+
+      console.log(JSON.stringify(nextPhotos));
       onUpdate(nextPhotos.data);
     }
   };
