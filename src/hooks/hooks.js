@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import { ACTIONS, StoreContext } from '../store';
 import {
   createCollection as createCollectionApi,
@@ -80,8 +80,6 @@ export const useCreateCollection = () => {
       photos,
     });
 
-    console.log(JSON.stringify(response.data));
-
     dispatch({
       payload: response.data,
       type: ACTIONS.CREATE_COLLECTION,
@@ -108,4 +106,21 @@ export const useUpdateCollection = () => {
   };
 
   return updateCollection;
+};
+
+export const useMapPosition = () => {
+  const { dispatch, state } = useStore();
+
+  const mapPosition = useMemo(() => {
+    return state.mapPosition;
+  }, [state.mapPosition]);
+
+  const setMapPosition = (position) => {
+    dispatch({
+      payload: position,
+      type: ACTIONS.SET_MAP_POSITION,
+    });
+  };
+
+  return [mapPosition, setMapPosition];
 };

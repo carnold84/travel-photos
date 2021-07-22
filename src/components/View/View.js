@@ -1,16 +1,27 @@
 import { motion } from 'framer-motion';
 import './View.css';
 
-const View = ({ children, level, ...rest }) => {
+const View = ({ children, isOver = true, level, ...rest }) => {
+  const under = {
+    hidden: { scale: 0.95, transition: { ease: 'easeOut', duration: 0.3 } },
+    show: { scale: 1, transition: { ease: 'easeOut', duration: 0.3 } },
+  };
+
+  const over = {
+    hidden: { y: '100%', transition: { ease: 'easeIn', duration: 0.3 } },
+    show: { y: 0, transition: { ease: 'easeOut', duration: 0.3 } },
+  };
+
   return (
     <motion.div
-      animate={{ y: 0, transition: { ease: 'easeOut', duration: 0.3 } }}
+      animate={'show'}
       className={'view'}
-      exit={{ y: '100%', transition: { ease: 'easeIn', duration: 0.3 } }}
-      initial={{ y: '100%' }}
+      exit={'hidden'}
+      initial={'hidden'}
       style={{
         zIndex: level,
       }}
+      variants={isOver ? over : under}
       {...rest}>
       {children}
     </motion.div>

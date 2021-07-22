@@ -1,4 +1,3 @@
-import { useNavigate } from '@reach/router';
 import { useState } from 'react';
 import { useCreateCollection, useUpdateCollection } from '../../hooks';
 import Modal from '../../components/Modal';

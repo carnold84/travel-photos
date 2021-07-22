@@ -1,5 +1,5 @@
-import { Link } from '@reach/router';
 import { useEffect, useState } from 'react';
+import AppLink from '../AppLink';
 import './PhotoCard.css';
 
 const PhotoCard = ({ imageUrl, meta, onClick, title, to, ...rest }) => {
@@ -23,7 +23,7 @@ const PhotoCard = ({ imageUrl, meta, onClick, title, to, ...rest }) => {
   }, [imageUrl]);
 
   return (
-    <Link className={'photo-card'} to={to} {...rest}>
+    <AppLink className={'photo-card'} from={'/'} to={to} {...rest}>
       <div className={'photo-card-image-container '}>
         {imgUrl === undefined && 'Loading...'}
         {imgUrl === null && "Couldn't load"}
@@ -43,7 +43,7 @@ const PhotoCard = ({ imageUrl, meta, onClick, title, to, ...rest }) => {
           {meta}
         </p>
       </div>
-    </Link>
+    </AppLink>
   );
 };
 

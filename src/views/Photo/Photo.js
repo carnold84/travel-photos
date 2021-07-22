@@ -1,15 +1,16 @@
-import { navigate, useParams } from '@reach/router';
+import { useParams } from '@reach/router';
 import { useMemo } from 'react';
 import Layout from '../../components/Layout';
 import View from '../../components/View';
 import { usePhoto } from '../../hooks';
 import './Photo.css';
 
-const Photo = () => {
+const Photo = ({ location }) => {
   const params = useParams();
   const initialPhoto = usePhoto(params?.id);
   const photo = useMemo(() => {
     return initialPhoto;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   let content = 'Photo not found';
@@ -21,8 +22,9 @@ const Photo = () => {
   return (
     <View level={2}>
       <Layout
+        backTo={`/collection/${params?.collectionId}`}
+        from={location.pathname}
         id={'photo'}
-        onBack={() => navigate(`/collection/${params.collectionId}`)}
         title={photo?.name}>
         {content}
       </Layout>

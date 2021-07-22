@@ -3,6 +3,7 @@ export {
   useCollections,
   useCreateCollection,
   useFetchInitialData,
+  useMapPosition,
   usePhoto,
   useStore,
   useUpdateCollection,

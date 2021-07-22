@@ -44,6 +44,7 @@
 .layout-content {
   background-color: #ffffff;
   flex-grow: 1;
+  overflow: hidden;
   padding: 0 25px 25px;
 }
 

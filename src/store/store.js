@@ -3,6 +3,7 @@ import { createContext, useReducer } from 'react';
 export const ACTIONS = {
   CREATE_COLLECTION: 'createCollection',
   SET_INITIAL_DATA: 'setInitialData',
+  SET_MAP_POSITION: 'setMapPosition',
   UPDATE_COLLECTION: 'updateCollection',
 };
 
@@ -12,6 +13,11 @@ const initialState = {
     byId: [],
   },
   isLoading: true,
+  mapPosition: {
+    bounds: null,
+    center: null,
+    zoom: null,
+  },
   photos: {
     allIds: [],
     byId: [],
@@ -40,6 +46,7 @@ const setInitialDataReducer = (state, { collections }) => {
   });
 
   return {
+    ...state,
     collections: {
       allIds: allCollectionsIds,
       byId: collectionsById,
@@ -110,6 +117,13 @@ const updateCollectionReducer = (state, collection) => {
   };
 };
 
+const setMapPositionReducer = (state, mapPosition) => {
+  return {
+    ...state,
+    mapPosition,
+  };
+};
+
 const reducer = (state, action) => {
   switch (action.type) {
     case ACTIONS.CREATE_COLLECTION:
@@ -117,6 +131,9 @@ const reducer = (state, action) => {
 
     case ACTIONS.SET_INITIAL_DATA:
       return setInitialDataReducer(state, action.payload);
+
+    case ACTIONS.SET_MAP_POSITION:
+      return setMapPositionReducer(state, action.payload);
 
     case ACTIONS.UPDATE_COLLECTION:
       return updateCollectionReducer(state, action.payload);

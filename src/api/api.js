@@ -113,7 +113,7 @@ const createPhoto = async (url) => {
         const address = [];
         let name = '';
         if (location) {
-          const { city, country, suburb, town, village } = location.address;
+          const { city, country, suburb, town } = location.address;
           let metro;
 
           if (city) {

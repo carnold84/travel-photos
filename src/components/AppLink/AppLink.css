@@ -1,0 +1,19 @@
+.button {
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  color: #666666;
+  cursor: pointer;
+  fill: #666666;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  transition: all ease 350ms;
+}
+
+.button:hover {
+  border: 1px solid #c92db9;
+  color: #c92db9;
+  fill: #c92db9;
+  transform: scale(1.1);
+}
