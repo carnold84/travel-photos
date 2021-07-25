@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 import './View.css';
 
-const View = ({ children, isOver = true, level, ...rest }) => {
+const View = ({ children, id, isOver = true, level, ...rest }) => {
   const under = {
-    hidden: { scale: 0.95, transition: { ease: 'easeOut', duration: 0.3 } },
+    hidden: { scale: 1, transition: { ease: 'easeOut', duration: 0.3 } },
     show: { scale: 1, transition: { ease: 'easeOut', duration: 0.3 } },
   };
 
@@ -11,6 +11,8 @@ const View = ({ children, isOver = true, level, ...rest }) => {
     hidden: { y: '100%', transition: { ease: 'easeIn', duration: 0.3 } },
     show: { y: 0, transition: { ease: 'easeOut', duration: 0.3 } },
   };
+
+  console.log(id, isOver);
 
   return (
     <motion.div
@@ -21,7 +23,7 @@ const View = ({ children, isOver = true, level, ...rest }) => {
       style={{
         zIndex: level,
       }}
-      variants={isOver ? over : under}
+      variants={isOver === true ? over : under}
       {...rest}>
       {children}
     </motion.div>

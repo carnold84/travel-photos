@@ -1,10 +1,11 @@
+import { Location } from '@reach/router';
 import Routes from './Routes';
 import StoreProvider from './store';
 
 const App = () => {
   return (
     <StoreProvider>
-      <Routes />
+      <Location>{({ location }) => <Routes />}</Location>
     </StoreProvider>
   );
 };

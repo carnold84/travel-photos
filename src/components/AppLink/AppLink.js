@@ -1,9 +1,19 @@
 import { Link } from '@reach/router';
+import { useRoutesData } from '../../hooks/hooks';
 import './AppLink.css';
 
-const AppLink = ({ children, from, to, ...rest }) => {
+const AppLink = ({ children, to, ...rest }) => {
+  const [routesData, setRoutesData] = useRoutesData();
+
+  const onClick = () => {
+    setRoutesData({
+      current: to,
+      previous: routesData.current,
+    });
+  };
+
   return (
-    <Link state={{ from, to }} to={to} {...rest}>
+    <Link onClick={onClick} to={to} {...rest}>
       {children}
     </Link>
   );

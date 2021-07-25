@@ -12,8 +12,8 @@ const List = () => {
   return (
     <motion.div
       animate={{ scale: 1, transition: { ease: 'easeOut', duration: 0.3 } }}
-      exit={{ scale: 0.95, transition: { ease: 'easeIn', duration: 0.3 } }}
-      initial={{ scale: 0.95 }}
+      exit={{ scale: 1, transition: { ease: 'easeIn', duration: 0.3 } }}
+      initial={{ scale: 1 }}
       style={{
         height: '100%',
         width: '100%',

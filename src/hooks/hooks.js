@@ -124,3 +124,20 @@ export const useMapPosition = () => {
 
   return [mapPosition, setMapPosition];
 };
+
+export const useRoutesData = () => {
+  const { dispatch, state } = useStore();
+
+  const routesData = useMemo(() => {
+    return state.routesData;
+  }, [state.routesData]);
+
+  const setRoutesData = (routesData) => {
+    dispatch({
+      payload: routesData,
+      type: ACTIONS.SET_ROUTES_DATA,
+    });
+  };
+
+  return [routesData, setRoutesData];
+};

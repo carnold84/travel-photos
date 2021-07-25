@@ -5,6 +5,7 @@ import Map from '../../components/Map';
 import View from '../../components/View';
 import { useCollection } from '../../hooks';
 import { useMapPosition } from '../../hooks';
+import { useRoutesData } from '../../hooks/hooks';
 import './Collection.css';
 
 const Collection = ({ location }) => {
@@ -18,6 +19,7 @@ const Collection = ({ location }) => {
   }, []);
   const mapRef = useRef();
   const [mapPosition, setMapPosition] = useMapPosition();
+  const [routesData, setRoutesData] = useRoutesData();
 
   const markers = useMemo(() => {
     return collection?.photos.map(({ id, latitude, longitude }) => {
@@ -26,11 +28,16 @@ const Collection = ({ location }) => {
         latitude,
         longitude,
         onClick: () => {
-          navigate(`${collection?.id}/photo/${id}`);
+          const to = `${collection?.id}/photo/${id}`;
+          setRoutesData({
+            current: to,
+            previous: routesData.current,
+          });
+          navigate(to);
         },
       };
     });
-  }, [collection]);
+  }, [collection, routesData, setRoutesData]);
 
   useEffect(() => {
     return () => {
@@ -55,8 +62,14 @@ const Collection = ({ location }) => {
     content = <div>Collection doesn't exist.</div>;
   }
 
+  console.log(JSON.stringify(routesData));
+  console.log(routesData.previous === '/' || routesData.current === '/');
+
   return (
-    <View level={1}>
+    <View
+      id={'collection'}
+      level={1}
+      isOver={routesData.previous === '/' || routesData.current === '/'}>
       <Layout
         backTo={'/'}
         from={location.pathname}

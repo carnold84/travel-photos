@@ -20,7 +20,7 @@ const Photo = ({ location }) => {
   }
 
   return (
-    <View level={2}>
+    <View id={'photo'} level={2}>
       <Layout
         backTo={`/collection/${params?.collectionId}`}
         from={location.pathname}

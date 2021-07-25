@@ -4,6 +4,7 @@ export const ACTIONS = {
   CREATE_COLLECTION: 'createCollection',
   SET_INITIAL_DATA: 'setInitialData',
   SET_MAP_POSITION: 'setMapPosition',
+  SET_ROUTES_DATA: 'setRoutesData',
   UPDATE_COLLECTION: 'updateCollection',
 };
 
@@ -11,6 +12,10 @@ const initialState = {
   collections: {
     allIds: [],
     byId: [],
+  },
+  routesData: {
+    current: null,
+    previous: null,
   },
   isLoading: true,
   mapPosition: {
@@ -124,10 +129,23 @@ const setMapPositionReducer = (state, mapPosition) => {
   };
 };
 
+const setRoutesDataReducer = (state, routesData) => {
+  return {
+    ...state,
+    routesData: {
+      ...state.routesData,
+      ...routesData,
+    },
+  };
+};
+
 const reducer = (state, action) => {
   switch (action.type) {
     case ACTIONS.CREATE_COLLECTION:
       return createCollectionReducer(state, action.payload);
+
+    case ACTIONS.SET_ROUTES_DATA:
+      return setRoutesDataReducer(state, action.payload);
 
     case ACTIONS.SET_INITIAL_DATA:
       return setInitialDataReducer(state, action.payload);
