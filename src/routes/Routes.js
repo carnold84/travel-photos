@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Router } from '@reach/router';
+import { Route, Switch, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
 import './routes.css';
@@ -10,10 +10,13 @@ import Photo from '../views/Photo/Photo';
 import Upload from '../views/Upload';
 import { useRoutesData } from '../hooks/hooks';
 
-const Routes = ({ location }) => {
+const Routes = () => {
   const { state } = useStore();
+  const location = useLocation();
   const fetchInitialData = useFetchInitialData();
-  const [routesData, setRoutesData] = useRoutesData();
+  const [routesData, setRoutesDate] = useRoutesData();
+
+  console.log(location);
 
   useEffect(() => {
     if (state.isLoading) {
@@ -22,7 +25,7 @@ const Routes = ({ location }) => {
   }, [fetchInitialData, state.isLoading]);
 
   useEffect(() => {
-    setRoutesData({
+    setRoutesDate({
       current: location.pathname,
     });
   }, []);
@@ -32,13 +35,13 @@ const Routes = ({ location }) => {
   }
 
   return (
-    <AnimatePresence initial={false}>
-      <Router key={location.pathname} location={location}>
-        <List exact={true} path={'/'} />
-        <Upload exact={true} path={'/upload'} />
-        <Collection exact={true} path={'/collection/:collectionId'} />
-        <Photo exact={true} path={'/photo/:id'} />
-      </Router>
+    <AnimatePresence>
+      <Switch key={location.pathname} location={location}>
+        <Route component={Photo} path={'/collection/:collectionId/photo/:id'} />
+        <Route component={Collection} path={'/collection/:collectionId'} />
+        <Route component={Upload} path={'/upload'} />
+        <Route component={List} path={'/'} />
+      </Switch>
     </AnimatePresence>
   );
 };

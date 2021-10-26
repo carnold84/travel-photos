@@ -12,8 +12,6 @@ const View = ({ children, id, isOver = true, level, ...rest }) => {
     show: { y: 0, transition: { ease: 'easeOut', duration: 0.3 } },
   };
 
-  console.log(id, isOver);
-
   return (
     <motion.div
       animate={'show'}

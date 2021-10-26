@@ -1,12 +1,13 @@
-import { useParams } from '@reach/router';
+import { useLocation, useParams } from 'react-router-dom';
 import { useMemo } from 'react';
 import Layout from '../../components/Layout';
 import View from '../../components/View';
 import { usePhoto } from '../../hooks';
 import './Photo.css';
 
-const Photo = ({ location }) => {
+const Photo = () => {
   const params = useParams();
+  const location = useLocation();
   const initialPhoto = usePhoto(params?.id);
   const photo = useMemo(() => {
     return initialPhoto;

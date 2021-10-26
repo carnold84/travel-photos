@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { navigate } from '@reach/router';
+import { useHistory } from 'react-router-dom';
 import { useCreateCollection, useUpdateCollection } from '../../hooks';
 import SelectPhotos from './SelectPhotos';
 import SelectCollection from './SelectCollection';
@@ -15,6 +15,7 @@ const STEPS = {
 const Upload = () => {
   const [step, setStep] = useState(STEPS.PHOTOS);
   const [photos, setPhotos] = useState([]);
+  const history = useHistory();
   const createCollection = useCreateCollection();
   const updateCollection = useUpdateCollection();
 
@@ -32,7 +33,7 @@ const Upload = () => {
   };
 
   const onClose = () => {
-    navigate('/');
+    history.push('/');
   };
 
   const onSave = async (id, name) => {
@@ -62,7 +63,7 @@ const Upload = () => {
       <Layout
         id={'upload'}
         noContentPadding={true}
-        onBack={() => navigate('/')}
+        onBack={() => history.psuh('/')}
         title={'Add Photos'}>
         {step === STEPS.PHOTOS && (
           <SelectPhotos

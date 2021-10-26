@@ -1,15 +1,18 @@
-import { navigate, useParams } from '@reach/router';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { useEffect, useMemo, useRef } from 'react';
 import Layout from '../../components/Layout';
 import Map from '../../components/Map';
 import View from '../../components/View';
 import { useCollection } from '../../hooks';
 import { useMapPosition } from '../../hooks';
-import { useRoutesData } from '../../hooks/hooks';
 import './Collection.css';
+import { useRoutesData } from '../../hooks/hooks';
 
-const Collection = ({ location }) => {
+const Collection = () => {
+  const history = useHistory();
   const params = useParams();
+  const location = useLocation();
+  const [routesData, setRoutesData] = useRoutesData();
   const collectionId = params?.collectionId;
   const initialCollection = useCollection(collectionId);
   // store collection so it still show when closing
@@ -19,7 +22,6 @@ const Collection = ({ location }) => {
   }, []);
   const mapRef = useRef();
   const [mapPosition, setMapPosition] = useMapPosition();
-  const [routesData, setRoutesData] = useRoutesData();
 
   const markers = useMemo(() => {
     return collection?.photos.map(({ id, latitude, longitude }) => {
@@ -28,16 +30,16 @@ const Collection = ({ location }) => {
         latitude,
         longitude,
         onClick: () => {
-          const to = `${collection?.id}/photo/${id}`;
+          const to = `/collection/${collection.id}/photo/${id}`;
           setRoutesData({
             current: to,
             previous: routesData.current,
           });
-          navigate(to);
+          history.push(to);
         },
       };
     });
-  }, [collection, routesData, setRoutesData]);
+  }, [collection, history]);
 
   useEffect(() => {
     return () => {
@@ -61,18 +63,20 @@ const Collection = ({ location }) => {
   } else {
     content = <div>Collection doesn't exist.</div>;
   }
+  console.log('routesData', routesData);
 
-  console.log(JSON.stringify(routesData));
-  console.log(routesData.previous === '/' || routesData.current === '/');
+  let isOver = true;
+  if (routesData.current?.includes('photo')) {
+    isOver = false;
+  }
+
+  console.log('isOver', isOver);
 
   return (
-    <View
-      id={'collection'}
-      level={1}
-      isOver={routesData.previous === '/' || routesData.current === '/'}>
+    <View id={'collection'} level={1} isOver={isOver}>
       <Layout
         backTo={'/'}
-        from={location.pathname}
+        from={location?.path}
         id={'collection'}
         noContentPadding={true}
         title={collection?.name}>

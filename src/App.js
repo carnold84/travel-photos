@@ -1,11 +1,13 @@
-import { Location } from '@reach/router';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Routes from './routes';
 import StoreProvider from './store';
 
 const App = () => {
   return (
     <StoreProvider>
-      <Location>{({ location }) => <Routes location={location} />}</Location>
+      <Router>
+        <Routes />
+      </Router>
     </StoreProvider>
   );
 };

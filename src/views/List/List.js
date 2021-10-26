@@ -1,6 +1,5 @@
-import { navigate } from '@reach/router';
+import { useHistory } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import Button from '../../components/Button';
 import Layout from '../../components/Layout';
 import PhotoCard from '../../components/PhotoCard';
 import { useCollections } from '../../hooks';
@@ -8,6 +7,7 @@ import './List.css';
 
 const List = () => {
   const collections = useCollections();
+  const history = useHistory();
 
   return (
     <motion.div
@@ -51,7 +51,7 @@ const List = () => {
         }
         /* rightControls={
           <Button
-            onClick={() => navigate('/upload')}
+            onClick={() => history.push('/upload')}
             style={{ height: '40px', width: '40px' }}
             title={'Upload'}>
             <svg

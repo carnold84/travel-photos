@@ -1,15 +1,16 @@
-import { navigate, useLocation } from '@reach/router';
+import { useHistory, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
 import PhotoModal from './modals/PhotoModal';
 
 const Modals = () => {
   const location = useLocation();
+  const history = useHistory();
   const queries = new URLSearchParams(location.search);
   const photoId = queries.get('photoId');
 
   const onClose = () => {
-    navigate(-1);
+    history.go(-1);
   };
 
   return (
