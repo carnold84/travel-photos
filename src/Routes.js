@@ -1,4 +1,4 @@
-import { Location, Router, useLocation } from '@reach/router';
+import { Router, useLocation } from '@reach/router';
 import { AnimatePresence } from 'framer-motion';
 
 import './routes.css';
@@ -36,8 +36,8 @@ const Routes = () => {
     <AnimatePresence initial={false}>
       <Router key={location.pathname} location={location}>
         <List exact={true} path={'/'} />
-        <Collection exact={true} path={'/collection/:collectionId'} />
         <Upload exact={true} path={'/upload'} />
+        <Collection exact={true} path={'/collection/:collectionId'} />
         <Photo exact={true} path={'/collection/:collectionId/photo/:id'} />
       </Router>
     </AnimatePresence>

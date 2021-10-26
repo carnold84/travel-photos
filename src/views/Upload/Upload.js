@@ -12,7 +12,7 @@ const STEPS = {
   COLLECTION: 'collection',
 };
 
-const Upload = ({ onClose }) => {
+const Upload = () => {
   const [step, setStep] = useState(STEPS.PHOTOS);
   const [photos, setPhotos] = useState([]);
   const createCollection = useCreateCollection();
@@ -29,6 +29,10 @@ const Upload = ({ onClose }) => {
   const onUpdatePhotos = (data) => {
     console.log(data);
     setPhotos([...photos, ...data]);
+  };
+
+  const onClose = () => {
+    navigate('/');
   };
 
   const onSave = async (id, name) => {

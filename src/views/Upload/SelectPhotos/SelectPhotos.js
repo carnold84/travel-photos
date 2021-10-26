@@ -1,8 +1,11 @@
+import { useRef } from 'react';
+import Button from '../../../components/Button';
 import { useCreatePhotos } from '../../../hooks/hooks';
 import './SelectPhotos.css';
 
 const SelectPhotos = ({ onCancel, onNext, onUpdate, photos }) => {
   const createPhotos = useCreatePhotos();
+  const elFileInput = useRef();
 
   const onChange = async (evt) => {
     const { files } = evt.target;
@@ -20,12 +23,26 @@ const SelectPhotos = ({ onCancel, onNext, onUpdate, photos }) => {
     }
   };
 
+  const onSelectImages = () => {
+    elFileInput.current.click();
+  };
+
   console.log(photos);
 
   return (
-    <div>
+    <div className={'select_photos'}>
       <h2>Choose Photos</h2>
-      <input multiple={true} onChange={onChange} type={'file'} />
+      <div className={'image_input'}>
+        <Button onClick={onSelectImages} style={{ width: '100%' }}>
+          Select Images
+        </Button>
+        <input
+          multiple={true}
+          onChange={onChange}
+          ref={elFileInput}
+          type={'file'}
+        />
+      </div>
       <div>
         {!photos && 'Loading...'}
         {photos &&
@@ -39,8 +56,10 @@ const SelectPhotos = ({ onCancel, onNext, onUpdate, photos }) => {
             return 'No location data';
           })}
       </div>
-      <button onClick={onCancel}>Cancel</button>
-      <button onClick={onNext}>Next</button>
+      <div className={'footer'}>
+        <Button onClick={onCancel}>Cancel</Button>
+        <Button onClick={onNext}>Next</Button>
+      </div>
     </div>
   );
 };

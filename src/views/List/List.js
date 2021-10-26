@@ -49,7 +49,7 @@ const List = () => {
             <h1 className="list-title">Travel Photos</h1>
           </>
         }
-        rightControls={
+        /* rightControls={
           <Button
             onClick={() => navigate('/upload')}
             style={{ height: '40px', width: '40px' }}
@@ -62,7 +62,8 @@ const List = () => {
               <path d="M8 8V14H6V8H0V6H6V0H8V6H14V8H8Z" />
             </svg>
           </Button>
-        }>
+        } */
+      >
         {collections.length === 0 && <p>No collections</p>}
         {collections.length > 0 && (
           <div className={'list-grid'}>
