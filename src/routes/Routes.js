@@ -14,9 +14,7 @@ const Routes = () => {
   const { state } = useStore();
   const location = useLocation();
   const fetchInitialData = useFetchInitialData();
-  const [routesData, setRoutesData] = useRoutesData();
-
-  console.log(location);
+  //const [routesData, setRoutesData] = useRoutesData();
 
   useEffect(() => {
     if (state.isLoading) {
@@ -24,12 +22,12 @@ const Routes = () => {
     }
   }, [fetchInitialData, state.isLoading]);
 
-  useEffect(() => {
+  /* useEffect(() => {
     setRoutesData({
       current: location.pathname,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, []); */
 
   if (state.isLoading) {
     return 'Loading...';

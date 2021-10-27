@@ -6,13 +6,13 @@ import View from '../../components/View';
 import { useCollection } from '../../hooks';
 import { useMapPosition } from '../../hooks';
 import './Collection.css';
-import { useRoutesData } from '../../hooks/hooks';
+//import { useRoutesData } from '../../hooks/hooks';
 
 const Collection = () => {
   const history = useHistory();
   const params = useParams();
   const location = useLocation();
-  const [routesData, setRoutesData] = useRoutesData();
+  //const [routesData, setRoutesData] = useRoutesData();
   const collectionId = params?.collectionId;
   const initialCollection = useCollection(collectionId);
   // store collection so it still show when closing
@@ -31,10 +31,10 @@ const Collection = () => {
         longitude,
         onClick: () => {
           const to = `/collection/${collection.id}/photo/${id}`;
-          setRoutesData({
+          /* setRoutesData({
             current: to,
             previous: routesData.current,
-          });
+          }); */
           history.push(to);
         },
       };
@@ -63,20 +63,17 @@ const Collection = () => {
   } else {
     content = <div>Collection doesn't exist.</div>;
   }
-  console.log('routesData', JSON.stringify(routesData, null, 2));
 
-  let isOver = true;
+  /* let isOver = true;
   if (
     routesData.current?.includes('photo') ||
     routesData.previous?.includes('photo')
   ) {
     isOver = false;
-  }
-
-  //console.log('isOver', isOver);
+  } */
 
   return (
-    <View id={'collection'} level={1} isOver={isOver}>
+    <View id={'collection'} level={1} /* isOver={isOver} */>
       <Layout
         backTo={'/'}
         from={location?.path}

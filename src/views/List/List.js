@@ -10,7 +10,7 @@ const List = () => {
   const history = useHistory();
 
   return (
-    <View id={'list'} level={0} isOver={false}>
+    <View id={'list'} level={0} /* isOver={false} */>
       <Layout
         id={'list'}
         leftControls={
