@@ -14,7 +14,7 @@ const Routes = () => {
   const { state } = useStore();
   const location = useLocation();
   const fetchInitialData = useFetchInitialData();
-  const [routesData, setRoutesDate] = useRoutesData();
+  const [routesData, setRoutesData] = useRoutesData();
 
   console.log(location);
 
@@ -25,9 +25,10 @@ const Routes = () => {
   }, [fetchInitialData, state.isLoading]);
 
   useEffect(() => {
-    setRoutesDate({
+    setRoutesData({
       current: location.pathname,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (state.isLoading) {

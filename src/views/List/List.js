@@ -1,7 +1,7 @@
 import { useHistory } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import Layout from '../../components/Layout';
 import PhotoCard from '../../components/PhotoCard';
+import View from '../../components/View';
 import { useCollections } from '../../hooks';
 import './List.css';
 
@@ -10,16 +10,7 @@ const List = () => {
   const history = useHistory();
 
   return (
-    <motion.div
-      animate={{ scale: 1, transition: { ease: 'easeOut', duration: 0.3 } }}
-      exit={{ scale: 1, transition: { ease: 'easeIn', duration: 0.3 } }}
-      initial={{ scale: 1 }}
-      style={{
-        height: '100%',
-        width: '100%',
-        position: 'absolute',
-        zIndex: 0,
-      }}>
+    <View id={'list'} level={0} isOver={false}>
       <Layout
         id={'list'}
         leftControls={
@@ -87,7 +78,7 @@ const List = () => {
           </div>
         )}
       </Layout>
-    </motion.div>
+    </View>
   );
 };
 

@@ -2,8 +2,9 @@ import { motion } from 'framer-motion';
 import './View.css';
 
 const View = ({ children, id, isOver = true, level, ...rest }) => {
+  console.log('View', id, isOver);
   const under = {
-    hidden: { scale: 1, transition: { ease: 'easeOut', duration: 0.3 } },
+    hidden: { scale: 0.9, transition: { ease: 'easeOut', duration: 0.3 } },
     show: { scale: 1, transition: { ease: 'easeOut', duration: 0.3 } },
   };
 

@@ -63,14 +63,17 @@ const Collection = () => {
   } else {
     content = <div>Collection doesn't exist.</div>;
   }
-  console.log('routesData', routesData);
+  console.log('routesData', JSON.stringify(routesData, null, 2));
 
   let isOver = true;
-  if (routesData.current?.includes('photo')) {
+  if (
+    routesData.current?.includes('photo') ||
+    routesData.previous?.includes('photo')
+  ) {
     isOver = false;
   }
 
-  console.log('isOver', isOver);
+  //console.log('isOver', isOver);
 
   return (
     <View id={'collection'} level={1} isOver={isOver}>
