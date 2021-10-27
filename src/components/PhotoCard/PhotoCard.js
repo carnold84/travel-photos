@@ -1,35 +1,14 @@
-import { useEffect, useState } from 'react';
 import AppLink from '../AppLink';
+import Picture from '../Picture';
 import './PhotoCard.css';
 
 const PhotoCard = ({ imageUrl, meta, onClick, title, to, ...rest }) => {
-  const [imgUrl, setImgUrl] = useState();
-
-  useEffect(() => {
-    const img = new Image();
-    img.onload = () => {
-      setImgUrl(true);
-    };
-    img.onerror = () => {
-      setImgUrl(null);
-    };
-    img.src = imageUrl;
-
-    return () => {
-      img.onload = null;
-      img.onerror = null;
-      img.src = null;
-    };
-  }, [imageUrl]);
-
   return (
     <AppLink className={'photo-card'} from={'/'} to={to} {...rest}>
       <div className={'photo-card-image-container '}>
-        {imgUrl === undefined && 'Loading...'}
-        {imgUrl === null && "Couldn't load"}
-        {imgUrl && (
-          <img alt={title} className={'photo-card-image'} src={imageUrl} />
-        )}
+        <div className={'photo-card-image'}>
+          <Picture alt={title} url={imageUrl} style={{ objectFit: 'cover' }} />
+        </div>
       </div>
       <div className={'photo-card-text'}>
         <h2 className={'photo-card-title'}>{title}</h2>

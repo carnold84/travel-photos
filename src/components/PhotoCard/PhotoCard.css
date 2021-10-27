@@ -18,8 +18,10 @@
 }
 
 .photo-card-image {
+  background-color: #f9f9f9;
   height: 100%;
   object-fit: contain;
+  position: relative;
   width: 100%;
 }
 

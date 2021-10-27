@@ -4,6 +4,7 @@ import Layout from '../../components/Layout';
 import View from '../../components/View';
 import { usePhoto } from '../../hooks';
 import './Photo.css';
+import Picture from '../../components/Picture';
 
 const Photo = () => {
   const params = useParams();
@@ -17,7 +18,7 @@ const Photo = () => {
   let content = 'Photo not found';
 
   if (photo) {
-    content = <img className={'photo-img'} alt={''} src={photo?.url} />;
+    content = <Picture alt={''} url={photo?.url} />;
   }
 
   return (
@@ -27,7 +28,7 @@ const Photo = () => {
         from={location.pathname}
         id={'photo'}
         title={photo?.name}>
-        {content}
+        <div className={'photo-content'}>{content}</div>
       </Layout>
     </View>
   );

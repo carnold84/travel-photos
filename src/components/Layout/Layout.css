@@ -13,7 +13,7 @@
   display: flex;
   flex-shrink: 0;
   justify-content: space-between;
-  padding: 25px;
+  padding: 15px;
   width: 100%;
 }
 
@@ -44,8 +44,8 @@
 .layout-content {
   background-color: #ffffff;
   flex-grow: 1;
-  overflow: hidden;
   padding: 0 25px 25px;
+  position: relative;
 }
 
 .layout-content.no-padding {

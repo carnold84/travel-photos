@@ -1,3 +1,13 @@
+.photo-content {
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  padding: 0 25px 25px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
 .photo-img {
   height: 100%;
   object-fit: contain;

@@ -1,0 +1,30 @@
+.picture {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.loading_screen {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+}
+
+.picture_container {
+  height: 100%;
+  position: relative;
+  transition: opacity 500ms ease-in-out;
+  width: 100%;
+}
+
+.image {
+  object-fit: contain;
+  position: relative;
+  width: 100%;
+}
