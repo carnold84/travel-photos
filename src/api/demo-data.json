@@ -5,8 +5,8 @@
       "photos": [
         {
           "id": "3f010189-2855-4dde-921e-47a7df1761cc",
-          "url": "https://res.cloudinary.com/carnold/image/upload/v1626845001/travel_photos/image1.jpg",
-          "thumbUrl": "https://res.cloudinary.com/carnold/image/upload/w_330/v1626845001/travel_photos/image1.jpg",
+          "url": "https://res.cloudinary.com/carnold/image/upload/c_fit,h_1080,w_1920/v1626845001/travel_photos/image1.jpg",
+          "thumbUrl": "https://res.cloudinary.com/carnold/image/upload/c_fit,h_330,w_330/v1626845001/travel_photos/image1.jpg",
           "orientation": "landscape",
           "created": "2019-11-19T21:58:52.000Z",
           "latitude": -31.997447972222222,
@@ -42,8 +42,8 @@
         },
         {
           "id": "46c78a04-a1ee-4d62-b0c2-48d7be84c904",
-          "url": "https://res.cloudinary.com/carnold/image/upload/v1626845010/travel_photos/image2.jpg",
-          "thumbUrl": "https://res.cloudinary.com/carnold/image/upload/w_330/v1626845010/travel_photos/image2.jpg",
+          "url": "https://res.cloudinary.com/carnold/image/upload/c_fit,h_1080,w_1920/v1626845010/travel_photos/image2.jpg",
+          "thumbUrl": "https://res.cloudinary.com/carnold/image/upload/c_fit,h_330,w_330/v1626845010/travel_photos/image2.jpg",
           "orientation": "landscape",
           "created": "2019-11-20T00:23:08.000Z",
           "latitude": -32.01857197222222,
@@ -78,8 +78,8 @@
         },
         {
           "id": "8d88c735-9bc6-432a-8994-24e5ae3c05e4",
-          "url": "https://res.cloudinary.com/carnold/image/upload/v1626845006/travel_photos/image3.jpg",
-          "thumbUrl": "https://res.cloudinary.com/carnold/image/upload/w_330/v1626845006/travel_photos/image3.jpg",
+          "url": "https://res.cloudinary.com/carnold/image/upload/c_fit,h_1080,w_1920/v1626845006/travel_photos/image3.jpg",
+          "thumbUrl": "https://res.cloudinary.com/carnold/image/upload/c_fit,h_330,w_330/v1626845006/travel_photos/image3.jpg",
           "orientation": "landscape",
           "created": "2019-11-20T00:57:37.000Z",
           "latitude": -32.002192972222225,
@@ -115,8 +115,8 @@
         },
         {
           "id": "7a8faf60-79d8-4504-a7dd-5c89d6a6a973",
-          "url": "https://res.cloudinary.com/carnold/image/upload/v1626845005/travel_photos/image4.jpg",
-          "thumbUrl": "https://res.cloudinary.com/carnold/image/upload/w_330/v1626845005/travel_photos/image4.jpg",
+          "url": "https://res.cloudinary.com/carnold/image/upload/c_fit,h_1080,w_1920/v1626845005/travel_photos/image4.jpg",
+          "thumbUrl": "https://res.cloudinary.com/carnold/image/upload/c_fit,h_330,w_330/v1626845005/travel_photos/image4.jpg",
           "orientation": "landscape",
           "created": "2019-11-20T05:51:26.000Z",
           "latitude": -31.954440972222223,
@@ -160,8 +160,8 @@
       "photos": [
         {
           "id": "270bf989-654c-4e63-b906-08225fc7bf93",
-          "url": "https://res.cloudinary.com/carnold/image/upload/v1626845011/travel_photos/image5.jpg",
-          "thumbUrl": "https://res.cloudinary.com/carnold/image/upload/w_330/v1626845011/travel_photos/image5.jpg",
+          "url": "https://res.cloudinary.com/carnold/image/upload/c_fit,h_1080,w_1920/v1626845011/travel_photos/image5.jpg",
+          "thumbUrl": "https://res.cloudinary.com/carnold/image/upload/c_fit,h_330,w_330/v1626845011/travel_photos/image5.jpg",
           "orientation": "portrait",
           "created": "2021-04-24T04:30:28.000Z",
           "latitude": -40.354384,
@@ -197,8 +197,8 @@
         },
         {
           "id": "c14140db-e013-4c45-a355-9ee754cdd73d",
-          "url": "https://res.cloudinary.com/carnold/image/upload/v1626845014/travel_photos/image6.jpg",
-          "thumbUrl": "https://res.cloudinary.com/carnold/image/upload/w_330/v1626845014/travel_photos/image6.jpg",
+          "url": "https://res.cloudinary.com/carnold/image/upload/c_fit,h_1080,w_1920/v1626845014/travel_photos/image6.jpg",
+          "thumbUrl": "https://res.cloudinary.com/carnold/image/upload/c_fit,h_330,w_330/v1626845014/travel_photos/image6.jpg",
           "orientation": "portrait",
           "created": "2021-04-24T04:30:43.000Z",
           "latitude": -40.354384,
@@ -234,8 +234,8 @@
         },
         {
           "id": "d784ea48-ff0a-4b11-acb9-75b0c1e0c804",
-          "url": "https://res.cloudinary.com/carnold/image/upload/v1626845003/travel_photos/image7.jpg",
-          "thumbUurl": "https://res.cloudinary.com/carnold/image/upload//w_330/v1626845003/travel_photos/image7.jpg",
+          "url": "https://res.cloudinary.com/carnold/image/upload/c_fit,h_1080,w_1920/v1626845003/travel_photos/image7.jpg",
+          "thumbUurl": "https://res.cloudinary.com/carnold/image/upload//c_fit,h_330,w_330/v1626845003/travel_photos/image7.jpg",
           "orientation": "portrait",
           "created": "2021-04-24T04:31:37.000Z",
           "latitude": -40.354429,
@@ -271,8 +271,8 @@
         },
         {
           "id": "316569b1-344f-47b0-bbac-80d890009688",
-          "url": "https://res.cloudinary.com/carnold/image/upload/v1626845012/travel_photos/image8.jpg",
-          "thumbUrl": "https://res.cloudinary.com/carnold/image/upload/w_330/v1626845012/travel_photos/image8.jpg",
+          "url": "https://res.cloudinary.com/carnold/image/upload/c_fit,h_1080,w_1920/v1626845012/travel_photos/image8.jpg",
+          "thumbUrl": "https://res.cloudinary.com/carnold/image/upload/c_fit,h_330,w_330/v1626845012/travel_photos/image8.jpg",
           "orientation": "portrait",
           "created": "2021-04-24T04:32:12.000Z",
           "latitude": -40.354429,
@@ -308,8 +308,8 @@
         },
         {
           "id": "ddf70b77-9d65-4313-9d0f-0a153499590f",
-          "url": "https://res.cloudinary.com/carnold/image/upload/v1626845008/travel_photos/image9.jpg",
-          "thumbUrl": "https://res.cloudinary.com/carnold/image/upload/w_330/v1626845008/travel_photos/image9.jpg",
+          "url": "https://res.cloudinary.com/carnold/image/upload/c_fit,h_1080,w_1920/v1626845008/travel_photos/image9.jpg",
+          "thumbUrl": "https://res.cloudinary.com/carnold/image/upload/c_fit,h_330,w_330/v1626845008/travel_photos/image9.jpg",
           "orientation": "portrait",
           "created": "2021-04-24T04:33:14.000Z",
           "latitude": -40.354075972222226,
