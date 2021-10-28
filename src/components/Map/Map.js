@@ -1,9 +1,9 @@
-import { forwardRef, useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker } from 'react-leaflet';
+import { forwardRef, useEffect, useRef, useState } from 'react';
+import { MapContainer, TileLayer, Marker, FeatureGroup } from 'react-leaflet';
 import './Map.css';
 
 const Map = forwardRef(({ markers = [], position }, ref) => {
-  const [map, setMap] = useState(null);
+  const elMarkerGroup = useRef(null);
   const [sizes, setSizes] = useState({
     height: window.innerHeight,
     width: window.innerWidth,
@@ -16,24 +16,11 @@ const Map = forwardRef(({ markers = [], position }, ref) => {
     });
   };
 
-  useEffect(() => {
-    if (map) {
-      ref.current = map;
-
-      const boundsZoom = map.getBoundsZoom(
-        [
-          [-85.0511, -180],
-          [85.0511, 180],
-        ],
-        true
-      );
-      map.setMinZoom(boundsZoom);
-      map.setMaxBounds([
-        [-85.0511, -180],
-        [85.0511, 180],
-      ]);
-    }
-  }, [map, ref]);
+  const onCreated = (evt) => {
+    const nextMap = evt;
+    nextMap.fitBounds(elMarkerGroup.current.getBounds());
+    ref.current = nextMap;
+  };
 
   useEffect(() => {
     window.addEventListener('resize', onResize);
@@ -50,7 +37,7 @@ const Map = forwardRef(({ markers = [], position }, ref) => {
         center={position.center ?? [0, 0]}
         scrollWheelZoom={true}
         style={{ height: '100%', width: '100%' }}
-        whenCreated={setMap}
+        whenCreated={onCreated}
         zoom={position.zoom ?? 0}>
         <TileLayer
           attribution={
@@ -61,21 +48,23 @@ const Map = forwardRef(({ markers = [], position }, ref) => {
             'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'
           }
         />
-        {markers.map((marker) => {
-          if (marker.latitude && marker.longitude) {
-            return (
-              <Marker
-                key={marker.id}
-                eventHandlers={{
-                  click: marker.onClick,
-                }}
-                position={[marker.latitude, marker.longitude]}
-              />
-            );
-          }
+        <FeatureGroup ref={elMarkerGroup}>
+          {markers.map((marker) => {
+            if (marker.latitude && marker.longitude) {
+              return (
+                <Marker
+                  key={marker.id}
+                  eventHandlers={{
+                    click: marker.onClick,
+                  }}
+                  position={[marker.latitude, marker.longitude]}
+                />
+              );
+            }
 
-          return null;
-        })}
+            return null;
+          })}
+        </FeatureGroup>
       </MapContainer>
     </div>
   );
