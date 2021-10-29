@@ -14,7 +14,7 @@
 }
 
 .list-logo {
-  height: 34px;
+  height: 26px;
   margin: 0 10px 0 0;
 }
 
@@ -27,6 +27,7 @@
   color: #c92db9;
   display: flex;
   font-size: 2.2rem;
+  font-weight: 600;
   margin: 0;
 }
 
