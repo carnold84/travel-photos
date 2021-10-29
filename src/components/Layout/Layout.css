@@ -10,11 +10,15 @@
 
 .layout-header {
   align-items: center;
+  background-color: #ffffff;
   display: flex;
   flex-shrink: 0;
   justify-content: space-between;
   padding: 25px;
+  position: sticky;
+  top: 0;
   width: 100%;
+  z-index: 1;
 }
 
 .layout-title {

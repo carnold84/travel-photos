@@ -1,37 +1,27 @@
 import { forwardRef, useEffect, useRef, useState } from 'react';
-import { MapContainer, TileLayer, Marker, FeatureGroup } from 'react-leaflet';
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  FeatureGroup,
+  Tooltip,
+} from 'react-leaflet';
+import Picture from '../Picture';
 import './Map.css';
 
 const Map = forwardRef(({ markers = [], position }, ref) => {
   const elMarkerGroup = useRef(null);
-  const [sizes, setSizes] = useState({
-    height: window.innerHeight,
-    width: window.innerWidth,
-  });
-
-  const onResize = () => {
-    setSizes({
-      height: window.innerHeight,
-      width: window.innerWidth,
-    });
-  };
 
   const onCreated = (evt) => {
     const nextMap = evt;
-    nextMap.fitBounds(elMarkerGroup.current.getBounds());
+    nextMap.fitBounds(elMarkerGroup.current.getBounds(), {
+      padding: [40, 40],
+    });
     ref.current = nextMap;
   };
 
-  useEffect(() => {
-    window.addEventListener('resize', onResize);
-
-    return () => {
-      window.removeEventListener('resize', onResize);
-    };
-  }, []);
-
   return (
-    <div style={sizes}>
+    <div style={{ height: '100%', width: '100%' }}>
       <MapContainer
         bounds={position.zoom ?? 0}
         center={position.center ?? [0, 0]}
@@ -57,8 +47,31 @@ const Map = forwardRef(({ markers = [], position }, ref) => {
                   eventHandlers={{
                     click: marker.onClick,
                   }}
-                  position={[marker.latitude, marker.longitude]}
-                />
+                  position={[marker.latitude, marker.longitude]}>
+                  <Tooltip>
+                    <div
+                      style={{
+                        height:
+                          marker.orientation === 'portrait' ? '200px' : null,
+                        width:
+                          marker.orientation === 'landscape' ? '200px' : null,
+                      }}>
+                      <Picture
+                        alt={marker.name}
+                        height={
+                          marker.orientation === 'portrait' ? '200px' : null
+                        }
+                        url={marker.thumbUrl}
+                        width={
+                          marker.orientation === 'landscape' ? '200px' : null
+                        }
+                      />
+                    </div>
+                    <div style={{ margin: '5px 0 0', textAlign: 'center' }}>
+                      Click marker to view
+                    </div>
+                  </Tooltip>
+                </Marker>
               );
             }
 

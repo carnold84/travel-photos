@@ -23,23 +23,31 @@ const Collection = () => {
   const mapRef = useRef();
   const [mapPosition, setMapPosition] = useMapPosition();
 
+  console.log(collection);
   const markers = useMemo(() => {
-    return collection?.photos.map(({ id, latitude, longitude }) => {
-      return {
-        id,
-        latitude,
-        longitude,
-        onClick: () => {
-          const to = `/collection/${collection.id}/photo/${id}`;
-          /* setRoutesData({
+    return collection?.photos.map(
+      ({ id, latitude, longitude, name, orientation, thumbUrl }) => {
+        return {
+          id,
+          latitude,
+          longitude,
+          name,
+          orientation,
+          onClick: () => {
+            const to = `/collection/${collection.id}/photo/${id}`;
+            /* setRoutesData({
             current: to,
             previous: routesData.current,
           }); */
-          history.push(to);
-        },
-      };
-    });
+            history.push(to);
+          },
+          thumbUrl,
+        };
+      }
+    );
   }, [collection, history]);
+
+  console.log(markers);
 
   useEffect(() => {
     return () => {

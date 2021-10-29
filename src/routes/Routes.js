@@ -34,7 +34,7 @@ const Routes = () => {
   }
 
   return (
-    <AnimatePresence>
+    <AnimatePresence initial={false}>
       <Switch key={location.pathname} location={location}>
         <Route component={Photo} path={'/collection/:collectionId/photo/:id'} />
         <Route component={Collection} path={'/collection/:collectionId'} />
