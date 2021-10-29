@@ -5,7 +5,7 @@ import StoreProvider from './store';
 const App = () => {
   return (
     <StoreProvider>
-      <Router>
+      <Router basename="/travel-photos">
         <Routes />
       </Router>
     </StoreProvider>
